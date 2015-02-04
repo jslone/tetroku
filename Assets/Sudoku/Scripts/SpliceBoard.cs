@@ -13,7 +13,9 @@ public class SpliceBoard : MonoBehaviour {
 		generateArray (puzzle);
 
 		//Plan: Iterate through the board, randomly choose one of the piece
-		//types, make sure it can be made out of that type, splice it
+		//types, make sure it can be made out of that type at that position, splice it
+		//if so, if not choose another random piece type, after a certain threshold
+		//just say that piece will be an extra
 		//need some wya to detect what has already been spliced 
 		//maybe puzzleArray should be an array of char-bool pairs
 	}
