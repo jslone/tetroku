@@ -13,10 +13,10 @@ public class PiecePlacer : MonoBehaviour {
 	void Update () {
 		// move the piece around
 		Vector3 dir = Vector3.zero;
-		dir.z += Convert.ToInt32(Input.GetKeyDown(KeyCode.LeftArrow));	// Left is +z
-		dir.z -= Convert.ToInt32(Input.GetKeyDown(KeyCode.RightArrow));	// Right is -z
-		dir.x += Convert.ToInt32(Input.GetKeyDown(KeyCode.UpArrow));	// Up is +x
-		dir.x -= Convert.ToInt32(Input.GetKeyDown(KeyCode.DownArrow));	// Down is -x
+		dir.x -= Convert.ToInt32(Input.GetKeyDown(KeyCode.LeftArrow));
+		dir.x += Convert.ToInt32(Input.GetKeyDown(KeyCode.RightArrow));
+		dir.y += Convert.ToInt32(Input.GetKeyDown(KeyCode.UpArrow));
+		dir.y -= Convert.ToInt32(Input.GetKeyDown(KeyCode.DownArrow));
 
 		transform.position += dir;
 
