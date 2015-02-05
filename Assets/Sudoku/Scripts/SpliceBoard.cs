@@ -91,7 +91,7 @@ public class SpliceBoard {
 				} while(canSplice == false);
 
 				if(canSplice == false) {
-					extras.Add(new Vector2(i,j));
+					//extras.Add(new Vector2(i,j));
 				} else {
 					TetrisPiece newPiece = splice (pieceType, i, j);
 					pieces.Add (newPiece);
@@ -100,6 +100,16 @@ public class SpliceBoard {
 		}
 
 		Debug.Log("finished splicing");
+
+		/* Loop through and find all the pieces that couldn't be spliced. */
+		for(int i = 0; i < BOARD_DIMENSION; i++) {
+			for(int j = 0; j < BOARD_DIMENSION; j++) {
+				if(!puzzleArray[i,j].isSpliced) {
+					extras.Add (new Vector2(i,j));
+				}
+			}
+		}
+
 		Debug.Log (pieces.Count);
 		Debug.Log (extras.Count);
 	}
