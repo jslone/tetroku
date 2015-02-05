@@ -17,7 +17,7 @@ public struct PieceData {
 	public bool isSpliced;
 }
 
-public class SpliceBoard : MonoBehaviour {
+public class SpliceBoard {
 
 	private const int BOARD_DIMENSION = 9;
 	private const int PIECE_TYPE_COUNT = 6;
@@ -28,22 +28,30 @@ public class SpliceBoard : MonoBehaviour {
 	private PieceData[,] puzzleArray = new PieceData[BOARD_DIMENSION,BOARD_DIMENSION];
 
 	//Stores all the spliced pieces for this board.
-	private List<TetrisPiece> pieces;
+	public List<TetrisPiece> pieces;
 
 	//Stores positions of all the extra spaces that weren't spliced into a 
 	//piece, if any.
-	private Vector2[] extras;
+	public List<Vector2> extras;
+
+	public SpliceBoard() {
+	}
 
 	/* Takes in the puzzle which was randomly selected and splices
 	   it into Tetris pieces. */
 	public void splicePuzzle(string puzzle) {
 		//char[,] puzzleArray = new char[BOARD_DIMENSION, BOARD_DIMENSION];
 		generateArray (puzzle);
+		pieces = new List<TetrisPiece> ();
+		extras = new List<Vector2> ();
 
 		//Plan: Iterate through the board, randomly choose one of the piece
 		//types, make sure it can be made out of that type at that position, splice it
 		//if so, if not choose another random piece type, after a certain threshold
 		//just say that piece will be an extra
+
+
+		Debug.Log("started splicing");
 
 		for (int i = 0; i < BOARD_DIMENSION; i++) {
 			for(int j = 0; j < BOARD_DIMENSION; j++) {
@@ -62,10 +70,14 @@ public class SpliceBoard : MonoBehaviour {
 				 * to 4. However, given piece rotation there will be 6 types
 				 * though there are only 2 real shapes
 				 */
-				int pieceType;
-				bool canSplice;
+				int pieceType = 0;
+				bool canSplice = false;
 
+				int counter = 0;
 				do {
+					if(counter > 1000) {
+						break;
+					}
 					pieceType = Random.Range (0, PIECE_TYPE_COUNT);
 					canSplice = checkValidSplice(pieceType, i, j);
 					//might be case with infinite loop, if a space
@@ -75,13 +87,31 @@ public class SpliceBoard : MonoBehaviour {
 					//add a mechanism so that it checks if loop has
 					//been running for too many iterations, if so
 					//just make this tile an extra and move on
+					counter++;
 				} while(canSplice == false);
 
-				TetrisPiece newPiece = splice (pieceType, i, j);
-				pieces.Add (newPiece);
+				if(canSplice == false) {
+					//extras.Add(new Vector2(i,j));
+				} else {
+					TetrisPiece newPiece = splice (pieceType, i, j);
+					pieces.Add (newPiece);
+				}
 			}
 		}
 
+		Debug.Log("finished splicing");
+
+		/* Loop through and find all the pieces that couldn't be spliced. */
+		for(int i = 0; i < BOARD_DIMENSION; i++) {
+			for(int j = 0; j < BOARD_DIMENSION; j++) {
+				if(!puzzleArray[i,j].isSpliced) {
+					extras.Add (new Vector2(i,j));
+				}
+			}
+		}
+
+		Debug.Log (pieces.Count);
+		Debug.Log (extras.Count);
 	}
 
 	//Generates a 2-dimensional array given a puzzle string.
@@ -98,9 +128,15 @@ public class SpliceBoard : MonoBehaviour {
 
 		for(int i = 0; i < puzzle.Length; i++) {
 
+			if(col >= BOARD_DIMENSION) {
+				break;
+			}
+
+			//Debug.Log(row);
+			//Debug.Log(col);
 			puzzleArray[row, col] = new PieceData(puzzle[i], false);
 
-			if(row > BOARD_DIMENSION) {
+			if(row + 1 >= BOARD_DIMENSION) {
 				//If we've reached the end of a col, go to the next one.
 				row = 0;
 				col++;
