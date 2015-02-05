@@ -216,8 +216,14 @@ public class SpliceBoard : MonoBehaviour {
 	TetrisPiece splice(int pieceType, int row, int col) {
 		TetrisPiece piece;
 
+		KeyValuePair<int,int> firstSolPos;
+		KeyValuePair<int,int> secondSolPos;
+		KeyValuePair<int,int> thirdSolPos;
+
 		switch (pieceType) {
 		case 0:
+			piece = new TetrisPiece();
+			firstSolPos = new KeyValuePair<int,int>(row, col);
 			break;
 		case 1:
 			break;
