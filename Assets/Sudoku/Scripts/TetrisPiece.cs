@@ -6,9 +6,9 @@ public class TetrisPiece{
 
 	/* The x and y positions (indices into the 2D solution array)
 	 * that this piece was from. */
-	public KeyValuePair<int,int> firstSolPos;
-	public KeyValuePair<int,int> secondSolPos;
-	public KeyValuePair<int,int> thirdSolPos;
+	public Vector2 firstSolPos;
+	public Vector2 secondSolPos;
+	public Vector2 thirdSolPos;
 
 	/* Number values inside the piece's boxes.*/
 	public int firstVal;
@@ -17,8 +17,8 @@ public class TetrisPiece{
 
 	public bool isAnchored;
 
-	public TetrisPiece(KeyValuePair<int,int> firstSolPos, KeyValuePair<int,int> secondSolPos,
-	                   KeyValuePair<int,int> thirdSolPos, int firstVal, 
+	public TetrisPiece(Vector2 firstSolPos, Vector2 secondSolPos,
+	                   Vector2 thirdSolPos, int firstVal, 
 	                   int secondVal, int thirdVal) {
 		this.firstSolPos = firstSolPos;
 		this.secondSolPos = secondSolPos;

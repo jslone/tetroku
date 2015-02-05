@@ -17,7 +17,7 @@ public class SpliceBoard : MonoBehaviour {
 
 	//Stores positions of all the extra spaces that weren't spliced into a 
 	//piece, if any.
-	private KeyValuePair<int,int>[] extras;
+	private Vector2[] extras;
 
 	/* Takes in the puzzle which was randomly selected and splices
 	   it into Tetris pieces. */
@@ -217,9 +217,9 @@ public class SpliceBoard : MonoBehaviour {
 	TetrisPiece splice(int pieceType, int row, int col) {
 		TetrisPiece piece;
 
-		KeyValuePair<int,int> firstSolPos;
-		KeyValuePair<int,int> secondSolPos;
-		KeyValuePair<int,int> thirdSolPos;
+		Vector2 firstSolPos;
+		Vector2 secondSolPos;
+		Vector2 thirdSolPos;
 
 		int firstVal;
 		int secondVal;
@@ -228,9 +228,9 @@ public class SpliceBoard : MonoBehaviour {
 		switch (pieceType) {
 		case 0:
 			piece = new TetrisPiece();
-			firstSolPos = new KeyValuePair<int,int>(row, col);
-			secondSolPos = new KeyValuePair<int,int>(row, col+1);
-			thirdSolPos = new KeyValuePair<int,int>(row, col+2);
+			firstSolPos = new Vector2(row, col);
+			secondSolPos = new Vector2(row, col+1);
+			thirdSolPos = new Vector2(row, col+2);
 
 			firstVal = puzzleArray[row,col];
 			secondVal = puzzleArray[row,col+1];
@@ -238,9 +238,9 @@ public class SpliceBoard : MonoBehaviour {
 			break;
 		case 1:
 			piece = new TetrisPiece();
-			firstSolPos = new KeyValuePair<int,int>(row, col);
-			secondSolPos = new KeyValuePair<int,int>(row+1, col);
-			thirdSolPos = new KeyValuePair<int,int>(row+2, col);
+			firstSolPos = new Vector2(row, col);
+			secondSolPos = new Vector2(row+1, col);
+			thirdSolPos = new Vector2(row+2, col);
 			
 			firstVal = puzzleArray[row,col];
 			secondVal = puzzleArray[row+1,col];
@@ -248,9 +248,9 @@ public class SpliceBoard : MonoBehaviour {
 			break;
 		case 2:
 			piece = new TetrisPiece();
-			firstSolPos = new KeyValuePair<int,int>(row, col);
-			secondSolPos = new KeyValuePair<int,int>(row+1, col);
-			thirdSolPos = new KeyValuePair<int,int>(row+1, col+1);
+			firstSolPos = new Vector2(row, col);
+			secondSolPos = new Vector2(row+1, col);
+			thirdSolPos = new Vector2(row+1, col+1);
 			
 			firstVal = puzzleArray[row,col];
 			secondVal = puzzleArray[row+1,col];
@@ -258,9 +258,9 @@ public class SpliceBoard : MonoBehaviour {
 			break;
 		case 3:
 			piece = new TetrisPiece();
-			firstSolPos = new KeyValuePair<int,int>(row, col);
-			secondSolPos = new KeyValuePair<int,int>(row, col+1);
-			thirdSolPos = new KeyValuePair<int,int>(row+1, col);
+			firstSolPos = new Vector2(row, col);
+			secondSolPos = new Vector2(row, col+1);
+			thirdSolPos = new Vector2(row+1, col);
 			
 			firstVal = puzzleArray[row,col];
 			secondVal = puzzleArray[row,col+1];
@@ -268,9 +268,9 @@ public class SpliceBoard : MonoBehaviour {
 			break;
 		case 4:
 			piece = new TetrisPiece();
-			firstSolPos = new KeyValuePair<int,int>(row, col);
-			secondSolPos = new KeyValuePair<int,int>(row, col+1);
-			thirdSolPos = new KeyValuePair<int,int>(row+1, col+1);
+			firstSolPos = new Vector2(row, col);
+			secondSolPos = new Vector2(row, col+1);
+			thirdSolPos = new Vector2(row+1, col+1);
 			
 			firstVal = puzzleArray[row,col];
 			secondVal = puzzleArray[row,col+1];
@@ -278,9 +278,9 @@ public class SpliceBoard : MonoBehaviour {
 			break;
 		case 5:
 			piece = new TetrisPiece();
-			firstSolPos = new KeyValuePair<int,int>(row, col);
-			secondSolPos = new KeyValuePair<int,int>(row+1, col);
-			thirdSolPos = new KeyValuePair<int,int>(row+1, col+1);
+			firstSolPos = new Vector2(row, col);
+			secondSolPos = new Vector2(row+1, col);
+			thirdSolPos = new Vector2(row+1, col+1);
 			
 			firstVal = puzzleArray[row,col];
 			secondVal = puzzleArray[row+1,col];
