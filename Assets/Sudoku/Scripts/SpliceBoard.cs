@@ -56,6 +56,10 @@ public class SpliceBoard : MonoBehaviour {
 					//might be case with infinite loop, if a space
 					//on board is boxedd in somehow, not surre if this
 					//can happen, if so fix it
+
+					//add a mechanism so that it checks if loop has
+					//been running for too many iterations, if so
+					//just make this tile an extra and move on
 				}
 
 				TetrisPiece newPiece = splice (pieceType, i, j);
@@ -235,6 +239,11 @@ public class SpliceBoard : MonoBehaviour {
 			firstVal = puzzleArray[row,col];
 			secondVal = puzzleArray[row,col+1];
 			thirdVal = puzzleArray[row, col+2];
+
+			puzzleArray[row,col].Value = true;
+			puzzleArray[row,col+1].Value = true;
+			puzzleArray[row,col+2].Value = true;
+
 			break;
 		case 1:
 			piece = new TetrisPiece();
@@ -245,6 +254,10 @@ public class SpliceBoard : MonoBehaviour {
 			firstVal = puzzleArray[row,col];
 			secondVal = puzzleArray[row+1,col];
 			thirdVal = puzzleArray[row+2, col];
+
+			puzzleArray[row,col].Value = true;
+			puzzleArray[row+1,col].Value = true;
+			puzzleArray[row+2,col].Value = true;
 			break;
 		case 2:
 			piece = new TetrisPiece();
@@ -255,6 +268,10 @@ public class SpliceBoard : MonoBehaviour {
 			firstVal = puzzleArray[row,col];
 			secondVal = puzzleArray[row+1,col];
 			thirdVal = puzzleArray[row+1, col+1];
+
+			puzzleArray[row,col].Value = true;
+			puzzleArray[row+1,col].Value = true;
+			puzzleArray[row+1,col+1].Value = true;
 			break;
 		case 3:
 			piece = new TetrisPiece();
@@ -265,6 +282,10 @@ public class SpliceBoard : MonoBehaviour {
 			firstVal = puzzleArray[row,col];
 			secondVal = puzzleArray[row,col+1];
 			thirdVal = puzzleArray[row+1, col];
+
+			puzzleArray[row,col].Value = true;
+			puzzleArray[row,col+1].Value = true;
+			puzzleArray[row+1,col].Value = true;
 			break;
 		case 4:
 			piece = new TetrisPiece();
@@ -275,16 +296,24 @@ public class SpliceBoard : MonoBehaviour {
 			firstVal = puzzleArray[row,col];
 			secondVal = puzzleArray[row,col+1];
 			thirdVal = puzzleArray[row+1, col+1];
+
+			puzzleArray[row,col].Value = true;
+			puzzleArray[row,col+1].Value = true;
+			puzzleArray[row+1,col+1].Value = true;
 			break;
 		case 5:
 			piece = new TetrisPiece();
 			firstSolPos = new Vector2(row, col);
 			secondSolPos = new Vector2(row+1, col);
-			thirdSolPos = new Vector2(row+1, col+1);
+			thirdSolPos = new Vector2(row+1, col-1);
 			
 			firstVal = puzzleArray[row,col];
 			secondVal = puzzleArray[row+1,col];
 			thirdVal = puzzleArray[row+1, col-1];
+
+			puzzleArray[row,col].Value = true;
+			puzzleArray[row+1,col].Value = true;
+			puzzleArray[row+1,col-1].Value = true;
 			break;
 		default:
 			return piece;
