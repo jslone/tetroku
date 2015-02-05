@@ -5,12 +5,19 @@ using System.Collections.Generic;
 public class SpliceBoard : MonoBehaviour {
 
 	private const int BOARD_DIMENSION = 9;
-	private const int PIECE_TYPE_COUNT = 7;
+	private const int PIECE_TYPE_COUNT = 6;
 
 	//Preprocessing array, stores the char with the number at that place
 	//in the board, as well as a bool saying whether that board square
 	//has been spliced into a tetris piece yet.
 	private KeyValuePair<char, bool>[,] puzzleArray;
+
+	//Stores all the spliced pieces for this board.
+	private TetrisPiece[] pieces;
+
+	//Stores positions of all the extra spaces that weren't spliced into a 
+	//piece, if any.
+	private KeyValuePair<int,int>[] extras;
 
 	/* Takes in the puzzle which was randomly selected and splices
 	   it into Tetris pieces. */
@@ -22,8 +29,6 @@ public class SpliceBoard : MonoBehaviour {
 		//types, make sure it can be made out of that type at that position, splice it
 		//if so, if not choose another random piece type, after a certain threshold
 		//just say that piece will be an extra
-		//need some way to detect what has already been spliced 
-		//maybe puzzleArray should be an array of char-bool pairs
 
 		for (int i = 0; i < BOARD_DIMENSION; i++) {
 			for(int j = 0; j < BOARD_DIMENSION; j++) {
@@ -42,12 +47,20 @@ public class SpliceBoard : MonoBehaviour {
 				 * to 4. However, given piece rotation there will be 6 types
 				 * though there are only 2 real shapes
 				 */
-				int pieceType = Random.Range(0, 6);
+				int pieceType = Random.Range(0, PIECE_TYPE_COUNT);
 				bool canSplice = checkValidSplice(pieceType, i, j);
+
+				while(canSplice == false) {
+					pieceType = Random.Range (0, PIECE_TYPE_COUNT);
+					canSplice = checkValidSplice(pieceType, i, j);
+					//might be case with infinite loop, if a space
+					//on board is boxedd in somehow, not surre if this
+					//can happen, if so fix it
+				}
+
+
 			}
 		}
-
-
 
 	}
 
@@ -196,6 +209,28 @@ public class SpliceBoard : MonoBehaviour {
 		}
 		default:
 			return false;
+		}
+	}
+
+	/* Splice the piece out of the board, returning the piece. */
+	TetrisPiece splice(int pieceType, int row, int col) {
+		TetrisPiece piece;
+
+		switch (pieceType) {
+		case 0:
+			break;
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+		case 5:
+			break;
+		default:
+			return piece;
 		}
 	}
 }
