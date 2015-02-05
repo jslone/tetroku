@@ -36,7 +36,13 @@ public class SpliceBoard : MonoBehaviour {
 				 * 6 - Two on top, two on bottom, skewed left
 				 * 7 - Two on top, two on bottom, skewed rigt
 				 */
-				int pieceType = Random.Range(0, PIECE_TYPE_COUNT);
+
+				/* Changing to tetris pieces of size 3 instead
+				 * but keeping that list up there just in case we switch
+				 * to 4. However, given piece rotation there will be 6 types
+				 * though there are only 2 real shapes
+				 */
+				int pieceType = Random.Range(0, 6);
 				bool canSplice = checkValidSplice(pieceType, i, j);
 			}
 		}
@@ -78,21 +84,37 @@ public class SpliceBoard : MonoBehaviour {
 		bool firstOccupied;
 		bool secondOccupied;
 		bool thirdOccupied;
-		bool fourthOccupied;
 
 		switch (pieceType) {
-		case 1:
+		case 0:
 		{
-			//Four in a row
-			if(col > BOARD_DIMENSION - 4) {
+			//Three in horizontal row
+			if(col > BOARD_DIMENSION - 3) {
 				//The piece is too close to the edge of the board.
 				return false;
 			} else {
 				firstOccupied = puzzleArray[row,col].Value;
 				secondOccupied = puzzleArray[row,col+1].Value;
 				thirdOccupied = puzzleArray[row,col+2].Value;
-				fourthOccupied = puzzleArray[row,col+3].Value;
-				if(firstOccupied || secondOccupied || thirdOccupied || fourthOccupied) {
+				if(firstOccupied || secondOccupied || thirdOccupied) {
+					return false;
+				} else {
+					return true;
+				}
+			}
+			break;
+		}
+		case 1:
+		{
+			//Three in vertical row
+			if(row > BOARD_DIMENSION - 3) {
+				//The piece is too close to the edge of the board.
+				return false;
+			} else {
+				firstOccupied = puzzleArray[row,col].Value;
+				secondOccupied = puzzleArray[row+1,col].Value;
+				thirdOccupied = puzzleArray[row+1,col].Value;
+				if(firstOccupied || secondOccupied || thirdOccupied) {
 					return false;
 				} else {
 					return true;
@@ -102,26 +124,74 @@ public class SpliceBoard : MonoBehaviour {
 		}
 		case 2:
 		{
+			//One top left, two bottom
+			if(row > BOARD_DIMENSION - 2 || col > BOARD_DIMENSION - 2) {
+				//The piece is too close to the edge of the board.
+				return false;
+			} else {
+				firstOccupied = puzzleArray[row,col].Value;
+				secondOccupied = puzzleArray[row+1,col].Value;
+				thirdOccupied = puzzleArray[row+1,col+1].Value;
+				if(firstOccupied || secondOccupied || thirdOccupied) {
+					return false;
+				} else {
+					return true;
+				}
+			}
 			break;
 		}
 		case 3:
 		{
+			//Two top, one bottom left
+			if(row > BOARD_DIMENSION - 2 || col > BOARD_DIMENSION - 2) {
+				//The piece is too close to the edge of the board.
+				return false;
+			} else {
+				firstOccupied = puzzleArray[row,col].Value;
+				secondOccupied = puzzleArray[row,col+1].Value;
+				thirdOccupied = puzzleArray[row+1, col].Value;
+				if(firstOccupied || secondOccupied || thirdOccupied) {
+					return false;
+				} else {
+					return true;
+				}
+			}
 			break;
 		}
 		case 4:
 		{
+			//Two top, one bottom right
+			if(row > BOARD_DIMENSION - 2 || col > BOARD_DIMENSION - 2) {
+				//The piece is too close to the edge of the board.
+				return false;
+			} else {
+				firstOccupied = puzzleArray[row,col].Value;
+				secondOccupied = puzzleArray[row,col+1].Value;
+				thirdOccupied = puzzleArray[row+1, col+1].Value;
+				if(firstOccupied || secondOccupied || thirdOccupied) {
+					return false;
+				} else {
+					return true;
+				}
+			}
 			break;
 		}
 		case 5:
 		{
-			break;
-		}
-		case 6:
-		{
-			break;
-		}
-		case 7:
-		{
+			//One top right, two bottom
+			if(row > BOARD_DIMENSION - 2 || col == 0) {
+				//The piece is too close to the edge of the board.
+				return false;
+			} else {
+				firstOccupied = puzzleArray[row,col].Value;
+				secondOccupied = puzzleArray[row+1,col].Value;
+				thirdOccupied = puzzleArray[row+1, col-1].Value;
+				if(firstOccupied || secondOccupied || thirdOccupied) {
+					return false;
+				} else {
+					return true;
+				}
+			}
 			break;
 		}
 		default:
