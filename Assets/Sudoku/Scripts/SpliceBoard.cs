@@ -28,11 +28,11 @@ public class SpliceBoard {
 	private PieceData[,] puzzleArray = new PieceData[BOARD_DIMENSION,BOARD_DIMENSION];
 
 	//Stores all the spliced pieces for this board.
-	private List<TetrisPiece> pieces;
+	public List<TetrisPiece> pieces;
 
 	//Stores positions of all the extra spaces that weren't spliced into a 
 	//piece, if any.
-	private List<Vector2> extras;
+	public List<Vector2> extras;
 
 	public SpliceBoard() {
 	}
