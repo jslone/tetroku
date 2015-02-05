@@ -2,6 +2,21 @@
 using System.Collections;
 using System.Collections.Generic;
 
+public static class CharExtensions {
+	public static int ParseInt32(this char value) {
+		return (int)(value - '0');
+	}
+}
+
+public struct PieceData {
+	public PieceData(char value, bool isSpliced) {
+		this.value = value.ParseInt32();
+		this.isSpliced = isSpliced;
+	}
+	public int value;
+	public bool isSpliced;
+}
+
 public class SpliceBoard : MonoBehaviour {
 
 	private const int BOARD_DIMENSION = 9;
@@ -10,7 +25,7 @@ public class SpliceBoard : MonoBehaviour {
 	//Preprocessing array, stores the char with the number at that place
 	//in the board, as well as a bool saying whether that board square
 	//has been spliced into a tetris piece yet.
-	private KeyValuePair<char, bool>[,] puzzleArray;
+	private PieceData[,] puzzleArray = new PieceData[BOARD_DIMENSION,BOARD_DIMENSION];
 
 	//Stores all the spliced pieces for this board.
 	private List<TetrisPiece> pieces;
@@ -22,7 +37,7 @@ public class SpliceBoard : MonoBehaviour {
 	/* Takes in the puzzle which was randomly selected and splices
 	   it into Tetris pieces. */
 	public void splicePuzzle(string puzzle) {
-		char[,] puzzleArray = new char[BOARD_DIMENSION, BOARD_DIMENSION];
+		//char[,] puzzleArray = new char[BOARD_DIMENSION, BOARD_DIMENSION];
 		generateArray (puzzle);
 
 		//Plan: Iterate through the board, randomly choose one of the piece
@@ -83,7 +98,7 @@ public class SpliceBoard : MonoBehaviour {
 
 		for(int i = 0; i < puzzle.Length; i++) {
 
-			puzzleArray[row, col] = new KeyValuePair<char, bool>(puzzle[i], false);
+			puzzleArray[row, col] = new PieceData(puzzle[i], false);
 
 			if(row > BOARD_DIMENSION) {
 				//If we've reached the end of a col, go to the next one.
@@ -111,9 +126,9 @@ public class SpliceBoard : MonoBehaviour {
 				//The piece is too close to the edge of the board.
 				return false;
 			} else {
-				firstOccupied = puzzleArray[row,col].Value;
-				secondOccupied = puzzleArray[row,col+1].Value;
-				thirdOccupied = puzzleArray[row,col+2].Value;
+				firstOccupied = puzzleArray[row,col].isSpliced;
+				secondOccupied = puzzleArray[row,col+1].isSpliced;
+				thirdOccupied = puzzleArray[row,col+2].isSpliced;
 				if(firstOccupied || secondOccupied || thirdOccupied) {
 					return false;
 				} else {
@@ -129,9 +144,9 @@ public class SpliceBoard : MonoBehaviour {
 				//The piece is too close to the edge of the board.
 				return false;
 			} else {
-				firstOccupied = puzzleArray[row,col].Value;
-				secondOccupied = puzzleArray[row+1,col].Value;
-				thirdOccupied = puzzleArray[row+2,col].Value;
+				firstOccupied = puzzleArray[row,col].isSpliced;
+				secondOccupied = puzzleArray[row+1,col].isSpliced;
+				thirdOccupied = puzzleArray[row+2,col].isSpliced;
 				if(firstOccupied || secondOccupied || thirdOccupied) {
 					return false;
 				} else {
@@ -147,9 +162,9 @@ public class SpliceBoard : MonoBehaviour {
 				//The piece is too close to the edge of the board.
 				return false;
 			} else {
-				firstOccupied = puzzleArray[row,col].Value;
-				secondOccupied = puzzleArray[row+1,col].Value;
-				thirdOccupied = puzzleArray[row+1,col+1].Value;
+				firstOccupied = puzzleArray[row,col].isSpliced;
+				secondOccupied = puzzleArray[row+1,col].isSpliced;
+				thirdOccupied = puzzleArray[row+1,col+1].isSpliced;
 				if(firstOccupied || secondOccupied || thirdOccupied) {
 					return false;
 				} else {
@@ -165,9 +180,9 @@ public class SpliceBoard : MonoBehaviour {
 				//The piece is too close to the edge of the board.
 				return false;
 			} else {
-				firstOccupied = puzzleArray[row,col].Value;
-				secondOccupied = puzzleArray[row,col+1].Value;
-				thirdOccupied = puzzleArray[row+1, col].Value;
+				firstOccupied = puzzleArray[row,col].isSpliced;
+				secondOccupied = puzzleArray[row,col+1].isSpliced;
+				thirdOccupied = puzzleArray[row+1, col].isSpliced;
 				if(firstOccupied || secondOccupied || thirdOccupied) {
 					return false;
 				} else {
@@ -183,9 +198,9 @@ public class SpliceBoard : MonoBehaviour {
 				//The piece is too close to the edge of the board.
 				return false;
 			} else {
-				firstOccupied = puzzleArray[row,col].Value;
-				secondOccupied = puzzleArray[row,col+1].Value;
-				thirdOccupied = puzzleArray[row+1, col+1].Value;
+				firstOccupied = puzzleArray[row,col].isSpliced;
+				secondOccupied = puzzleArray[row,col+1].isSpliced;
+				thirdOccupied = puzzleArray[row+1, col+1].isSpliced;
 				if(firstOccupied || secondOccupied || thirdOccupied) {
 					return false;
 				} else {
@@ -201,9 +216,9 @@ public class SpliceBoard : MonoBehaviour {
 				//The piece is too close to the edge of the board.
 				return false;
 			} else {
-				firstOccupied = puzzleArray[row,col].Value;
-				secondOccupied = puzzleArray[row+1,col].Value;
-				thirdOccupied = puzzleArray[row+1, col-1].Value;
+				firstOccupied = puzzleArray[row,col].isSpliced;
+				secondOccupied = puzzleArray[row+1,col].isSpliced;
+				thirdOccupied = puzzleArray[row+1, col-1].isSpliced;
 				if(firstOccupied || secondOccupied || thirdOccupied) {
 					return false;
 				} else {
@@ -231,92 +246,86 @@ public class SpliceBoard : MonoBehaviour {
 
 		switch (pieceType) {
 		case 0:
-			piece = new TetrisPiece();
 			firstSolPos = new Vector2(row, col);
 			secondSolPos = new Vector2(row, col+1);
 			thirdSolPos = new Vector2(row, col+2);
 
-			firstVal = puzzleArray[row,col];
-			secondVal = puzzleArray[row,col+1];
-			thirdVal = puzzleArray[row, col+2];
+			firstVal = puzzleArray[row,col].value;
+			secondVal = puzzleArray[row,col+1].value;
+			thirdVal = puzzleArray[row, col+2].value;
 
-			puzzleArray[row,col].Value = true;
-			puzzleArray[row,col+1].Value = true;
-			puzzleArray[row,col+2].Value = true;
+			puzzleArray[row,col].isSpliced = true;
+			puzzleArray[row,col+1].isSpliced = true;
+			puzzleArray[row,col+2].isSpliced = true;
 
 			break;
 		case 1:
-			piece = new TetrisPiece();
 			firstSolPos = new Vector2(row, col);
 			secondSolPos = new Vector2(row+1, col);
 			thirdSolPos = new Vector2(row+2, col);
-			
-			firstVal = puzzleArray[row,col];
-			secondVal = puzzleArray[row+1,col];
-			thirdVal = puzzleArray[row+2, col];
 
-			puzzleArray[row,col].Value = true;
-			puzzleArray[row+1,col].Value = true;
-			puzzleArray[row+2,col].Value = true;
+			firstVal = puzzleArray[row,col].value;
+			secondVal = puzzleArray[row+1,col].value;
+			thirdVal = puzzleArray[row+2, col].value;
+
+			puzzleArray[row,col].isSpliced = true;
+			puzzleArray[row+1,col].isSpliced = true;
+			puzzleArray[row+2,col].isSpliced = true;
 			break;
 		case 2:
-			piece = new TetrisPiece();
 			firstSolPos = new Vector2(row, col);
 			secondSolPos = new Vector2(row+1, col);
 			thirdSolPos = new Vector2(row+1, col+1);
-			
-			firstVal = puzzleArray[row,col];
-			secondVal = puzzleArray[row+1,col];
-			thirdVal = puzzleArray[row+1, col+1];
 
-			puzzleArray[row,col].Value = true;
-			puzzleArray[row+1,col].Value = true;
-			puzzleArray[row+1,col+1].Value = true;
+			firstVal = puzzleArray[row,col].value;
+			secondVal = puzzleArray[row+1,col].value;
+			thirdVal = puzzleArray[row+1, col+1].value;
+
+			puzzleArray[row,col].isSpliced = true;
+			puzzleArray[row+1,col].isSpliced = true;
+			puzzleArray[row+1,col+1].isSpliced = true;
 			break;
 		case 3:
-			piece = new TetrisPiece();
 			firstSolPos = new Vector2(row, col);
 			secondSolPos = new Vector2(row, col+1);
 			thirdSolPos = new Vector2(row+1, col);
 			
-			firstVal = puzzleArray[row,col];
-			secondVal = puzzleArray[row,col+1];
-			thirdVal = puzzleArray[row+1, col];
+			firstVal = puzzleArray[row,col].value;
+			secondVal = puzzleArray[row,col+1].value;
+			thirdVal = puzzleArray[row+1, col].value;
 
-			puzzleArray[row,col].Value = true;
-			puzzleArray[row,col+1].Value = true;
-			puzzleArray[row+1,col].Value = true;
+			puzzleArray[row,col].isSpliced = true;
+			puzzleArray[row,col+1].isSpliced = true;
+			puzzleArray[row+1,col].isSpliced = true;
 			break;
 		case 4:
-			piece = new TetrisPiece();
 			firstSolPos = new Vector2(row, col);
 			secondSolPos = new Vector2(row, col+1);
 			thirdSolPos = new Vector2(row+1, col+1);
 			
-			firstVal = puzzleArray[row,col];
-			secondVal = puzzleArray[row,col+1];
-			thirdVal = puzzleArray[row+1, col+1];
+			firstVal = puzzleArray[row,col].value;
+			secondVal = puzzleArray[row,col+1].value;
+			thirdVal = puzzleArray[row+1, col+1].value;
 
-			puzzleArray[row,col].Value = true;
-			puzzleArray[row,col+1].Value = true;
-			puzzleArray[row+1,col+1].Value = true;
+			puzzleArray[row,col].isSpliced = true;
+			puzzleArray[row,col+1].isSpliced = true;
+			puzzleArray[row+1,col+1].isSpliced = true;
 			break;
 		case 5:
-			piece = new TetrisPiece();
 			firstSolPos = new Vector2(row, col);
 			secondSolPos = new Vector2(row+1, col);
 			thirdSolPos = new Vector2(row+1, col-1);
 			
-			firstVal = puzzleArray[row,col];
-			secondVal = puzzleArray[row+1,col];
-			thirdVal = puzzleArray[row+1, col-1];
+			firstVal = puzzleArray[row,col].value;
+			secondVal = puzzleArray[row+1,col].value;
+			thirdVal = puzzleArray[row+1, col-1].value;
 
-			puzzleArray[row,col].Value = true;
-			puzzleArray[row+1,col].Value = true;
-			puzzleArray[row+1,col-1].Value = true;
+			puzzleArray[row,col].isSpliced = true;
+			puzzleArray[row+1,col].isSpliced = true;
+			puzzleArray[row+1,col-1].isSpliced = true;
 			break;
 		default:
-			return piece;
+			return null;
 		}
 
 		piece = new TetrisPiece (firstSolPos, secondSolPos, thirdSolPos,

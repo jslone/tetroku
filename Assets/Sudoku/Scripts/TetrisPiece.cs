@@ -2,31 +2,33 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class TetrisPiece{
+public struct Box {
+	public Box(Vector2 pos, int value) {
+		this.pos = pos;
+		this.value = value;
+	}
+	public Vector2 pos;
+	public int value;
+}
 
-	/* The x and y positions (indices into the 2D solution array)
-	 * that this piece was from. */
-	public Vector2 firstSolPos;
-	public Vector2 secondSolPos;
-	public Vector2 thirdSolPos;
+public class TetrisPiece {
 
-	/* Number values inside the piece's boxes.*/
-	public int firstVal;
-	public int secondVal;
-	public int thirdVal;
+	public List<Box> boxes;
 
 	public bool isAnchored;
 
+	public TetrisPiece() {
+		boxes = new List<Box>(3);
+		isAnchored =  false;
+	}
+
 	public TetrisPiece(Vector2 firstSolPos, Vector2 secondSolPos,
 	                   Vector2 thirdSolPos, int firstVal, 
-	                   int secondVal, int thirdVal) {
-		this.firstSolPos = firstSolPos;
-		this.secondSolPos = secondSolPos;
-		this.thirdSolPos = thirdSolPos;
-		this.firstVal = firstVal;
-		this.secondVal = secondVal;
-		this.thirdVal = thirdVal;
-		isAnchored = false;
+	                   int secondVal, int thirdVal) : this() {
+
+		boxes.Add(new Box(firstSolPos,firstVal));
+		boxes.Add(new Box(secondSolPos,secondVal));
+		boxes.Add(new Box(thirdSolPos,thirdVal));
 	}
 
 }
