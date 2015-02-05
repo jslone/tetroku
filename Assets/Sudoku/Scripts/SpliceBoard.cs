@@ -13,7 +13,7 @@ public class SpliceBoard : MonoBehaviour {
 	private KeyValuePair<char, bool>[,] puzzleArray;
 
 	//Stores all the spliced pieces for this board.
-	private TetrisPiece[] pieces;
+	private List<TetrisPiece> pieces;
 
 	//Stores positions of all the extra spaces that weren't spliced into a 
 	//piece, if any.
@@ -58,7 +58,8 @@ public class SpliceBoard : MonoBehaviour {
 					//can happen, if so fix it
 				}
 
-
+				TetrisPiece newPiece = splice (pieceType, i, j);
+				pieces.Add (newPiece);
 			}
 		}
 
@@ -126,7 +127,7 @@ public class SpliceBoard : MonoBehaviour {
 			} else {
 				firstOccupied = puzzleArray[row,col].Value;
 				secondOccupied = puzzleArray[row+1,col].Value;
-				thirdOccupied = puzzleArray[row+1,col].Value;
+				thirdOccupied = puzzleArray[row+2,col].Value;
 				if(firstOccupied || secondOccupied || thirdOccupied) {
 					return false;
 				} else {
@@ -220,23 +221,77 @@ public class SpliceBoard : MonoBehaviour {
 		KeyValuePair<int,int> secondSolPos;
 		KeyValuePair<int,int> thirdSolPos;
 
+		int firstVal;
+		int secondVal;
+		int thirdVal;
+
 		switch (pieceType) {
 		case 0:
 			piece = new TetrisPiece();
 			firstSolPos = new KeyValuePair<int,int>(row, col);
+			secondSolPos = new KeyValuePair<int,int>(row, col+1);
+			thirdSolPos = new KeyValuePair<int,int>(row, col+2);
+
+			firstVal = puzzleArray[row,col];
+			secondVal = puzzleArray[row,col+1];
+			thirdVal = puzzleArray[row, col+2];
 			break;
 		case 1:
+			piece = new TetrisPiece();
+			firstSolPos = new KeyValuePair<int,int>(row, col);
+			secondSolPos = new KeyValuePair<int,int>(row+1, col);
+			thirdSolPos = new KeyValuePair<int,int>(row+2, col);
+			
+			firstVal = puzzleArray[row,col];
+			secondVal = puzzleArray[row+1,col];
+			thirdVal = puzzleArray[row+2, col];
 			break;
 		case 2:
+			piece = new TetrisPiece();
+			firstSolPos = new KeyValuePair<int,int>(row, col);
+			secondSolPos = new KeyValuePair<int,int>(row+1, col);
+			thirdSolPos = new KeyValuePair<int,int>(row+1, col+1);
+			
+			firstVal = puzzleArray[row,col];
+			secondVal = puzzleArray[row+1,col];
+			thirdVal = puzzleArray[row+1, col+1];
 			break;
 		case 3:
+			piece = new TetrisPiece();
+			firstSolPos = new KeyValuePair<int,int>(row, col);
+			secondSolPos = new KeyValuePair<int,int>(row, col+1);
+			thirdSolPos = new KeyValuePair<int,int>(row+1, col);
+			
+			firstVal = puzzleArray[row,col];
+			secondVal = puzzleArray[row,col+1];
+			thirdVal = puzzleArray[row+1, col];
 			break;
 		case 4:
+			piece = new TetrisPiece();
+			firstSolPos = new KeyValuePair<int,int>(row, col);
+			secondSolPos = new KeyValuePair<int,int>(row, col+1);
+			thirdSolPos = new KeyValuePair<int,int>(row+1, col+1);
+			
+			firstVal = puzzleArray[row,col];
+			secondVal = puzzleArray[row,col+1];
+			thirdVal = puzzleArray[row+1, col+1];
 			break;
 		case 5:
+			piece = new TetrisPiece();
+			firstSolPos = new KeyValuePair<int,int>(row, col);
+			secondSolPos = new KeyValuePair<int,int>(row+1, col);
+			thirdSolPos = new KeyValuePair<int,int>(row+1, col+1);
+			
+			firstVal = puzzleArray[row,col];
+			secondVal = puzzleArray[row+1,col];
+			thirdVal = puzzleArray[row+1, col-1];
 			break;
 		default:
 			return piece;
 		}
+
+		piece = new TetrisPiece (firstSolPos, secondSolPos, thirdSolPos,
+		                         firstVal, secondVal, thirdVal);
+		return piece;
 	}
 }

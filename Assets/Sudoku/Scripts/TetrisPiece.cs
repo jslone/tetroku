@@ -15,6 +15,8 @@ public class TetrisPiece{
 	public int secondVal;
 	public int thirdVal;
 
+	public bool isAnchored;
+
 	public TetrisPiece(KeyValuePair<int,int> firstSolPos, KeyValuePair<int,int> secondSolPos,
 	                   KeyValuePair<int,int> thirdSolPos, int firstVal, 
 	                   int secondVal, int thirdVal) {
@@ -24,6 +26,7 @@ public class TetrisPiece{
 		this.firstVal = firstVal;
 		this.secondVal = secondVal;
 		this.thirdVal = thirdVal;
+		isAnchored = false;
 	}
 
 }
