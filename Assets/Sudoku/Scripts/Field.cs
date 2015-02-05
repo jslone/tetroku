@@ -17,7 +17,7 @@ public class Field : MonoBehaviour {
 		gameObject.name = temp;					// set name
 		game = GameObject.Find("Main Camera").GetComponent<Game>();		// get game reference
 	}
-
+/*
 #if UNITY_STANDALONE || UNITY_WEBPLAYER
 	void OnMouseUp(){
 		if(game.solved == false){					// puzzle not solved
@@ -64,4 +64,5 @@ public class Field : MonoBehaviour {
 		}
 	}
 #endif
+*/
 }
