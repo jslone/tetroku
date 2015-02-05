@@ -6,6 +6,7 @@ using System.Collections.Generic;
 public class PiecePlacer : MonoBehaviour {
 	public Game game;
 	public GameObject[] pieceMarkers;
+	public Color markerColor;
 
 	private static Vector3 bbl = new Vector3(-4,-4,0);
 	private static Vector3 bur = new Vector3(4,4,0);
@@ -45,7 +46,10 @@ public class PiecePlacer : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+		Piece = new TetrisPiece(new Vector2(0,1),new Vector2(0,0),new Vector2(0,-1),1,2,3);
+		foreach(GameObject pm in pieceMarkers) {
+			pm.renderer.material.color = markerColor;
+		}
 	}
 	
 	// Update is called once per frame
@@ -69,17 +73,23 @@ public class PiecePlacer : MonoBehaviour {
 
 	// Check if each element can be placed, if so, set board
 	bool Place() {
+		Debug.Log("trying to place");
 		List<Field> fs = new List<Field>(Piece.boxes.Count);
 
 
 		// check if each element can be placed
 		bool anchor = true;
-		foreach(Box b in Piece.boxes) {
-
+		Debug.Log(Piece.boxes.Count);
+		for(int i = 0; i < Piece.boxes.Count; i++) {
+			Debug.Log("looping");
+			Box b = Piece.boxes[i];
+			Vector3 pos = pieceMarkers[i].transform.position;
+			Debug.Log(pos);
+			Debug.Log(Vector3.forward);
 			// look for piece at location
 			RaycastHit info;
-			if(Physics.Raycast(transform.position + (Vector3)b.pos,Vector3.forward,out info)) {
-
+			if(Physics.Raycast(pos,Vector3.forward,out info)) {
+				Debug.Log("hit");
 				// get field for piece
 				Field f = info.collider.gameObject.GetComponent<Field>();
 				if(f && f.canPlace) {
@@ -90,7 +100,7 @@ public class PiecePlacer : MonoBehaviour {
 					// anchor only if every piece can be anchored
 					anchor &= (b.pos - (Vector2)info.collider.gameObject.transform.position).sqrMagnitude < 0.5*0.5;
 
-					break;
+					continue;
 				}
 			}
 			return false;

@@ -4,7 +4,16 @@ using System.Collections;
 public class Field : MonoBehaviour {
 	
 	public int row;									// row number
-	public int value = 0;							// field value
+	public int _value = 0;							// field value
+	public int value {
+		get {
+			return _value;
+		}
+		set {
+			_value = value;
+			renderer.material.mainTexture = game.num[value];
+		}
+	}
 	public bool canPlace = false;			// can number be placed on this field
 	Game game;										// game script reference
 	Touch[] touch;
