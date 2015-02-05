@@ -62,10 +62,10 @@ public class SpliceBoard : MonoBehaviour {
 				 * to 4. However, given piece rotation there will be 6 types
 				 * though there are only 2 real shapes
 				 */
-				int pieceType = Random.Range(0, PIECE_TYPE_COUNT);
-				bool canSplice = checkValidSplice(pieceType, i, j);
+				int pieceType;
+				bool canSplice;
 
-				while(canSplice == false) {
+				do {
 					pieceType = Random.Range (0, PIECE_TYPE_COUNT);
 					canSplice = checkValidSplice(pieceType, i, j);
 					//might be case with infinite loop, if a space
@@ -75,7 +75,7 @@ public class SpliceBoard : MonoBehaviour {
 					//add a mechanism so that it checks if loop has
 					//been running for too many iterations, if so
 					//just make this tile an extra and move on
-				}
+				} while(canSplice == false);
 
 				TetrisPiece newPiece = splice (pieceType, i, j);
 				pieces.Add (newPiece);
