@@ -2893,6 +2893,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d3eea3ba8807451a9f31ef435ea0134, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  game: {fileID: 2085130574}
   pieceMarkers:
   - {fileID: 639847809}
   - {fileID: 1655902380}
