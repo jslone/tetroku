@@ -123,27 +123,12 @@ public class SpliceBoard {
 		   our purposes it should be fine. I can change it if needed
 		   but this way it makes more sense conceptually with the board.
 		 */
-		int row = 0;
-		int col = 0;
 
-		for(int i = 0; i < puzzle.Length; i++) {
-
-			if(col >= BOARD_DIMENSION) {
-				break;
-			}
-
-			//Debug.Log(row);
-			//Debug.Log(col);
-			puzzleArray[row, col] = new PieceData(puzzle[i], false);
-
-			if(row + 1 >= BOARD_DIMENSION) {
-				//If we've reached the end of a col, go to the next one.
-				row = 0;
-				col++;
-			} else {
-				//We haven't reached the end of the col, so go to the
-				//next row.
-				row++;
+		int i = 0;
+		for(int row = 0; row < BOARD_DIMENSION; row++) {
+			for(int col = 0; col < BOARD_DIMENSION; col++) {
+				puzzleArray[row, col] = new PieceData(puzzle[i], false);
+				i++;
 			}
 		}
 	}

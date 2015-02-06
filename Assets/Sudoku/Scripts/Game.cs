@@ -3,27 +3,14 @@ using System.Collections;
 
 public class Game : MonoBehaviour {
 
-	public GameObject[] box1;			// 9 fields per box
-	public GameObject[] box2;			//
-	public GameObject[] box3;			//
-	public GameObject[] box4;			//
-	public GameObject[] box5;			//
-	public GameObject[] box6;			//
-	public GameObject[] box7;			//
-	public GameObject[] box8;			//
-	public GameObject[] box9;			//
+	public Board board;
 
 	public SpliceBoard splicer;
 	
-	public Texture[] num;						// number textures
-	public Texture[] lockNum;			// locked number textures
+	public Sprite[] num;						// number textures
+	//public Sprite[] lockNum;			// locked number textures
 	public GUITexture[] buttons;		// gui texture buttons
-	
-	public GameObject selected = null;		// selected field
-	
-	Field f;																// field script reference
-	
-	public GameObject numButtons;			// number buttons
+
 	public GameObject gameButtons;		// game menu buttons
 	
 	float gameTime = 0.0f;								// game play time
@@ -34,31 +21,23 @@ public class Game : MonoBehaviour {
 	bool countTime = false;								// count game time
 	public bool solved = false;							// is puzzle solved
 	
-	int[,] code = new int[10,10];						// solved puzzle
+	int[,] code = new int[9,9];						// solved puzzle
 	
 	public GameObject texSolved;				// solved gui texture
 	public GameObject texFailed;					// failed gui texture
 	
 	public GameObject gen;							// generating puzzle gui texture
 	public AudioClip clickSound;					// click sound
-	
+
 	void Start (){
 		gen.SetActive(false);								// disable some objects
 		texSolved.SetActive(false);
 		texFailed.SetActive(false);
 		LoadPuzzle();
-		//RemoveNumbers();									// remove some numbers
 		countTime = true;										// start counting time
 	}
 	
 	void Update(){
-		if(selected != null){									// object selecteed
-			selected.renderer.material.mainTexture = num[10];			// set texture
-			string n = selected.name;															// get object name
-			numButtons.SetActive(true);													// enable number buttons
-			gameButtons.SetActive(false);												// disable menu buttons
-			SetGUIButtons(n);																		// select available numbers
-		}
 		if(countTime){
 			CountTime();																					// count time
 		}
@@ -197,7 +176,6 @@ public class Game : MonoBehaviour {
 			foreach(Field fl in f) {
 				if(fl.canPlace == true){								// if can place
 					fl.value = 0;												// set field value
-					fl.gameObject.renderer.material.mainTexture = num[0];		// set field texture
 				}
 			}
 		}
@@ -206,15 +184,11 @@ public class Game : MonoBehaviour {
 	// solve puzzle
 	public void DoSolve(){
 		if(!solved){												//
-			bool cp = false;									// set can place
-			string fn = "";										// field name
-			for(int x = 1; x < 10; x++){				//
-				for(int y = 1; y < 10; y++){			//
-					fn = x.ToString() + y.ToString();		// create field name
-					cp = GameObject.Find(fn).GetComponent<Field>().canPlace;								// get field can place
-					if(cp){																																				// if can place
-						GameObject.Find(fn).GetComponent<Field>().value = code[x,y];						// set field value
-						GameObject.Find(fn).renderer.material.mainTexture = num[code[x,y]];			// set field texture
+			for(int x = 0; x < 9; x++){				//
+				for(int y = 0; y < 9; y++){			//
+					Field f = board.fields[x,y];
+					if(f.canPlace) {
+						f.value = code[x,y];
 					}
 				}
 			}
@@ -226,8 +200,7 @@ public class Game : MonoBehaviour {
 	
 	// load prefab puzzle
 	void LoadPuzzle(){
-		string fn = "";						// field name
-		int i = -1;								// index number
+		int i = 0;								// index number
 		int no = 0;							// field number
 		
 		string puzzle = "";																				// puzzle
@@ -236,60 +209,32 @@ public class Game : MonoBehaviour {
 		splicer = new SpliceBoard();
 		splicer.splicePuzzle(puzzle);
 
-		for(int x = 1; x < 10; x++){
-			for(int y = 1; y < 10; y++){
-				i++;																	//
-				no = int.Parse(puzzle[i].ToString());	// create number
+		for(int x = 0; x < 9; x++){
+			for(int y = 0; y < 9; y++){
+				no = puzzle[i].ParseInt32();
 				code[x,y] = no;							// save field value
-				fn = x.ToString() + y.ToString();
-				GameObject go = GameObject.Find(fn);
-				go.GetComponent<Field>().value = no;
+				i++;
 			}
 		}
 
 		foreach(Vector2 extra in splicer.extras) {
-			Debug.Log(extra);
-			int x = Mathf.RoundToInt(extra.x) + 1;
-			int y = Mathf.RoundToInt(extra.y) + 1;
-			fn = x.ToString() + y.ToString();
+			int x = Mathf.RoundToInt(extra.x);
+			int y = Mathf.RoundToInt(extra.y);
 			no = code[x,y];
-			Debug.Log(no);
-			GameObject go = GameObject.Find(fn);
 
-			Field f = go.GetComponent<Field>();
-			if(f.value != no) {
-				Debug.Log("missmatch!!!");
-				Debug.Log (extra);
-				Debug.Log (f.value);
-				Debug.Log (no);
-			}
+
+			Field f = board.fields[x,y];
 			f.canPlace = false;
-
-			go.renderer.material.mainTexture = lockNum[no];			// set texture
+			f.value = no;
 		}
 	}
 	
 	// check column and row
-	public bool CheckCR(int a, int b, int val){				// first number, second number, value
+	public bool CheckCR(int x, int y, int val){				// first number, second number, value
 		bool cp = true;												// can place
-		string s = "";													// field name
-		for(int x = 1; x < 10; x++){							// loop column
-			s = "";																// reset name
-			s = s + b.ToString() + x.ToString();		// create name
-			f = GameObject.Find(s).GetComponent<Field>();	// find field
-			
-			if(val == f.value){										// check value
-				cp = false;													// set can place
-			}
-		}
-		
-		for(int x = 1; x < 10; x++){							// loop row
-			s = "";																// reset name
-			s = s + x.ToString() + a.ToString();		// create name
-			f = GameObject.Find(s).GetComponent<Field>();		// 
-			if(val == f.value){																		//
-				cp = false;																					//
-			}
+		for(int i = 0; i < 9; i++) {
+			cp &= i==y || board.fields[x,i].value != val;
+			cp &= i==x || board.fields[i,y].value != val;
 		}
 		return cp;															// return can place
 	}
@@ -300,157 +245,26 @@ public class Game : MonoBehaviour {
 		foreach(Field fl in f){
 			fl.value = 0;						// reset value
 			fl.canPlace = true;			// reset can place
-			fl.gameObject.renderer.material.mainTexture = num[0];		// set texture
 		}
 	}
 	
 	// check for same numbers in box
-	public bool CheckBox(int a, int b, int val){				//
-		string s = "";														//	field name
-		s = s + b.ToString() + a.ToString();				//	create name
-		bool p = true;														//	can place
-		
-		// box 1
-		if(s == "11" || s == "12" || s == "13" || s == "21" || s == "22" || s == "23" || s == "31" || s == "32" || s == "33"){		// select name
-			p = LoopBox(val, box1);																																						// loop thru box
-		}
-		// box 2
-		if(s == "41" || s == "42" || s == "43" || s == "51" || s == "52" || s == "53" || s == "61" || s == "62" || s == "63"){
-			p = LoopBox(val, box2);
-		}
-		// box 3
-		if(s == "71" || s == "72" || s == "73" || s == "81" || s == "82" || s == "83" || s == "91" || s == "92" || s == "93"){
-			p = LoopBox(val, box3);
-		}
-		// box 4
-		if(s == "14" || s == "15" || s == "16" || s == "24" || s == "25" || s == "26" || s == "34" || s == "35" || s == "36"){
-			p = LoopBox(val, box4);
-		}
-		// box 5
-		if(s == "44" || s == "45" || s == "46" || s == "54" || s == "55" || s == "56" || s == "64" || s == "65" || s == "66"){
-			p = LoopBox(val, box5);
-		}
-		// box 6
-		if(s == "74" || s == "75" || s == "76" || s == "84" || s == "85" || s == "86" || s == "94" || s == "95" || s == "96"){
-			p = LoopBox(val, box6);
-		}
-		// box 7
-		if(s == "17" || s == "18" || s == "19" || s == "27" || s == "28" || s == "29" || s == "37" || s == "38" || s == "39"){
-			p = LoopBox(val, box7);
-		}
-		// box 8
-		if(s == "47" || s == "48" || s == "49" || s == "57" || s == "58" || s == "59" || s == "67" || s == "68" || s == "69"){
-			p =LoopBox(val, box8);
-		}
-		// box 9
-		if(s == "77" || s == "78" || s == "79" || s == "87" || s == "88" || s == "89" || s == "97" || s == "98" || s == "99"){
-			p = LoopBox(val, box9);
-		}
-		
-		return p;			// return can place
-	}
-	
-	// loop thru box
-	bool LoopBox(int a, GameObject[] bx){					// value, box with fields
-		bool p = true;																	// can place
-		foreach(GameObject b in bx){								// loop box
-			int v = b.GetComponent<Field>().value;			// get field value
-			if(v == a){																		// if same
-				p = false;																	// set can place
+	public bool CheckBox(int x, int y, int val){				//
+		bool cp = true;
+		int sx = (x/3)*3;
+		int sy = (y/3)*3;
+		for(int i = 0; i < 3; i++) {
+			for(int j = 0; j < 3; j++) {
+				int ii = sx+i;
+				int jj = sy+j;
+				cp &= (x==ii && y==jj) || board.fields[ii,jj].value != val;
 			}
 		}
-		
-		return p;																			// return can place
-	}
-	
-	// prepare game, remove some numbers
-	void RemoveNumbers(){
-		SetBox(box1);																	// remove numbers from box
-		SetBox(box2);
-		SetBox(box3);
-		SetBox(box4);
-		SetBox(box5);
-		SetBox(box6);
-		SetBox(box7);
-		SetBox(box8);
-		SetBox(box9);
-	}
-	
-	// remove numbers in box
-	void SetBox(GameObject[] bx){								// box with fields
-		string gameLevel = "";												// game level
-		gameLevel = PlayerPrefs.GetString("gamelevel","easy");		// get game level
-		
-		int noRemoved = 0;													// number of removed fields
-		int index = 0;																// field number
-		int toRemove = 0;														// number of fields to be removed
-		
-		switch(gameLevel){
-			case "easy":
-				toRemove = Random.Range(4,6);				// get number of fields to be removed
-				break;
-			case "medium":
-				toRemove = Random.Range(5,8);
-				break;
-			case "hard":
-				toRemove = Random.Range(6,9);
-				break;
-		}
-		
-		do{
-			index = Random.Range(0,9);													// random field number
-			int val = bx[index].GetComponent<Field>().value;			// get field value
-			if(val != 0){																						// if not empty
-				bx[index].GetComponent<Field>().value = 0;					// set field value
-				bx[index].GetComponent<Field>().canPlace = true;		// set can place
-				bx[index].renderer.material.mainTexture = num[0];		// set texture
-				noRemoved++;																			// count removed
-			}
-		}while(noRemoved < toRemove);												// remove until removed = to remove
-	}
-	
-	// set buttons
-	void SetGUIButtons(string a){															// a = field name
-		int c = int.Parse(a[0].ToString());												// get column number
-		int r = int.Parse(a[1].ToString());													// get row number
-		bool en = true;																					// enabled
-		
-		for(int b = 1; b < 10; b++){
-			buttons[b].GetComponent<GUIButton>().enable = true;			// set button enabled
-			string s = "";																					// name
-			for(int x = 1; x < 10; x++){
-				s = "";																								// reset name
-				s = s + c.ToString() + x.ToString();										// create name
-				f = GameObject.Find(s).GetComponent<Field>();		// find field
-				if(b == f.value){																			// compare value
-					buttons[b].GetComponent<GUIButton>().enable = false;		// set button disabled
-				}
-			}
-			
-			for(int x = 1; x < 10; x++){
-				s = "";							// reset name
-				s = s + x.ToString() + r.ToString();			// create name
-				f = GameObject.Find(s).GetComponent<Field>();		// 
-				if(b == f.value){																			//
-					buttons[b].GetComponent<GUIButton>().enable = false;		//
-				}
-			}
-			
-			en = CheckBox(r,c,b);					// check box for number
-			if(!en){												// 
-				buttons[b].GetComponent<GUIButton>().enable = false;		//
-			}
-		}
+		return cp;
 	}
 	
 	// change menu
 	public void SwitchMenu(){
-		if(selected != null){												
-			selected.renderer.material.mainTexture = num[0];			// set texture
-			selected.GetComponent<Field>().value = 0;						// set field value
-			selected = null;																				// set selected
-		}
-		numButtons.SetActive(false);														// hide numbers
 		gameButtons.SetActive(true);														// show game menu
 	}
 	

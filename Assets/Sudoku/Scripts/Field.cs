@@ -12,32 +12,31 @@ public class Field : MonoBehaviour {
 		}
 		set {
 			_value = value;
-			renderer.material.mainTexture = game.num[value];
+			sprite.sprite = game.num[value];
 		}
 	}
 	public bool valid = true;
 	public bool canPlace = false;			// can number be placed on this field
-	Game game;										// game script reference
+	public Game game;										// game script reference
 	Touch[] touch;
-
+	SpriteRenderer sprite;
 
 	void Awake(){
-		string temp;												// temp string
-		temp = gameObject.name;					// get object name
-		col = int.Parse(temp);
-		temp = temp + row.ToString();			// create name
-		gameObject.name = temp;					// set name
-		game = GameObject.Find("Main Camera").GetComponent<Game>();		// get game reference
+		sprite = GetComponent<SpriteRenderer>();
 	}
 
 	void Update() {
 		if(value > 0) {
-			valid = game.CheckCR(col,row,value) && game.CheckBox(col,row,value);
-			/*if(valid) {
-				renderer.material.color = Color.white;
+			bool cr = game.CheckCR(row,col,value);
+			bool cb = game.CheckBox(row,col,value);
+			valid = cr && cb;
+			if(!valid) {
+				sprite.color = Color.red;
+			} else if(canPlace) {
+				sprite.color = Color.white;
 			} else {
-				renderer.material.color = Color.red;
-			}*/
+				sprite.color = Color.grey;
+			}
 		}
 	}
 /*

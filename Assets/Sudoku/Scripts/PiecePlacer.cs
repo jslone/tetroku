@@ -7,8 +7,8 @@ public class PiecePlacer : MonoBehaviour {
 	public GameObject[] pieceMarkers;
 	public Color markerColor;
 
-	private static Vector3 bbl = new Vector3(-4,-4,0);
-	private static Vector3 bur = new Vector3(4,4,0);
+	private static Vector3 bbl = new Vector3(0,0,0);
+	private static Vector3 bur = new Vector3(8,8,0);
 
 	public Vector3 bl = bbl;
 	public Vector3 ur = bur;
@@ -31,13 +31,14 @@ public class PiecePlacer : MonoBehaviour {
 				pieceMarkers[i].transform.localPosition = lPos;
 
 				// set child texture
-				pieceMarkers[i].renderer.material.mainTexture = game.num[_piece.boxes[i].value];
+				pieceMarkers[i].GetComponent<SpriteRenderer>().sprite = game.num[_piece.boxes[i].value];
 
 				// expand bounding box
 				lbl = Vector2.Min(lbl,lPos);
 				lur = Vector2.Max(lur,lPos);
 			}
-			transform.localPosition = Vector3.zero;
+			//transform.localPosition = Vector3.zero;
+			transform.position = new Vector3(-4,-4,0);
 			// transform bounding box
 			bl = bbl - (Vector3)lbl;
 			ur = bur - (Vector3)lur;
@@ -81,37 +82,34 @@ public class PiecePlacer : MonoBehaviour {
 
 
 		// check if each element can be placed
-		bool anchor = true;
 		for(int i = 0; i < Piece.boxes.Count; i++) {
 			Box b = Piece.boxes[i];
 			Vector3 pos = pieceMarkers[i].transform.position;
 			// look for piece at location
-			RaycastHit info;
-			if(Physics.Raycast(pos,Vector3.forward,out info)) {
+			Collider2D col;
+			if((col = Physics2D.OverlapPoint(pos))) {
 				// get field for piece
-				Field f = info.collider.gameObject.GetComponent<Field>();
+				Field f = col.GetComponent<Field>();
 				if(f && f.canPlace) {
 
 					// store field to modify if we can place
 					fs.Add(f);
 
 					// anchor only if every piece can be anchored
-					Vector2 opos = info.collider.gameObject.transform.position;
-					anchor &= (b.pos - opos).sqrMagnitude < 0.5*0.5;
+					Vector2 opos = col.transform.position;
 
 					continue;
 				}
 			}
 			return false;
 		}
-
+		bool anchor = ((Vector2)transform.position - Piece.boxes[0].pos).sqrMagnitude < 0.5f*0.5f;
 		// place the elements
 		for(int i = 0; i < Piece.boxes.Count; i++) {
-			fs[i].value = Piece.boxes[i].value;
 			if(anchor) {
 				fs[i].canPlace = false;
-				fs[i].renderer.material.mainTexture = game.lockNum[fs[i].value];
 			}
+			fs[i].value = Piece.boxes[i].value;
 		}
 
 		if(anchor) {
@@ -125,7 +123,6 @@ public class PiecePlacer : MonoBehaviour {
 		if(game.splicer.pieces.Count > 0) {
 			PieceIdx = Random.Range(0,game.splicer.pieces.Count);
 			Piece = game.splicer.pieces[PieceIdx];
-			Debug.Log ("start piece");
 			Debug.Log(Piece.boxes[0].pos);
 		}
 
