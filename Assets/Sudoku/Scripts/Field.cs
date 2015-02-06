@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class Field : MonoBehaviour {
-	
+
+	public int col;
 	public int row;									// row number
 	public int _value = 0;							// field value
 	public int value {
@@ -14,6 +15,7 @@ public class Field : MonoBehaviour {
 			renderer.material.mainTexture = game.num[value];
 		}
 	}
+	public bool valid = true;
 	public bool canPlace = false;			// can number be placed on this field
 	Game game;										// game script reference
 	Touch[] touch;
@@ -22,9 +24,21 @@ public class Field : MonoBehaviour {
 	void Awake(){
 		string temp;												// temp string
 		temp = gameObject.name;					// get object name
+		col = int.Parse(temp);
 		temp = temp + row.ToString();			// create name
 		gameObject.name = temp;					// set name
 		game = GameObject.Find("Main Camera").GetComponent<Game>();		// get game reference
+	}
+
+	void Update() {
+		if(value > 0) {
+			valid = game.CheckCR(col,row,value) && game.CheckBox(col,row,value);
+			/*if(valid) {
+				renderer.material.color = Color.white;
+			} else {
+				renderer.material.color = Color.red;
+			}*/
+		}
 	}
 /*
 #if UNITY_STANDALONE || UNITY_WEBPLAYER

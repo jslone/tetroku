@@ -109,7 +109,7 @@ public class Game : MonoBehaviour {
 		int filled = 0;										// number of filled fields
 		Field[] f = FindObjectsOfType(typeof(Field)) as Field[];			// find all fields
 		foreach(Field fl in f) {	
-			if(fl.value != 0){			// check if not empty
+			if(fl.value != 0 && fl.valid){			// check if not empty
 				filled++;						// add filled
 			}
 		}
@@ -240,7 +240,10 @@ public class Game : MonoBehaviour {
 			for(int y = 1; y < 10; y++){
 				i++;																	//
 				no = int.Parse(puzzle[i].ToString());	// create number
-				code[x,y] = no;											// save field value
+				code[x,y] = no;							// save field value
+				fn = x.ToString() + y.ToString();
+				GameObject go = GameObject.Find(fn);
+				go.GetComponent<Field>().value = no;
 			}
 		}
 
@@ -254,7 +257,12 @@ public class Game : MonoBehaviour {
 			GameObject go = GameObject.Find(fn);
 
 			Field f = go.GetComponent<Field>();
-			f.value = no;
+			if(f.value != no) {
+				Debug.Log("missmatch!!!");
+				Debug.Log (extra);
+				Debug.Log (f.value);
+				Debug.Log (no);
+			}
 			f.canPlace = false;
 
 			go.renderer.material.mainTexture = lockNum[no];			// set texture
@@ -262,7 +270,7 @@ public class Game : MonoBehaviour {
 	}
 	
 	// check column and row
-	bool CheckCR(int a, int b, int val){				// first number, second number, value
+	public bool CheckCR(int a, int b, int val){				// first number, second number, value
 		bool cp = true;												// can place
 		string s = "";													// field name
 		for(int x = 1; x < 10; x++){							// loop column
@@ -297,7 +305,7 @@ public class Game : MonoBehaviour {
 	}
 	
 	// check for same numbers in box
-	bool CheckBox(int a, int b, int val){				//
+	public bool CheckBox(int a, int b, int val){				//
 		string s = "";														//	field name
 		s = s + b.ToString() + a.ToString();				//	create name
 		bool p = true;														//	can place
