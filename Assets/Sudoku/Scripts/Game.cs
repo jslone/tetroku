@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.Cloud.Analytics;
 
 public class Game : MonoBehaviour {
 
@@ -37,9 +36,6 @@ public class Game : MonoBehaviour {
 		texFailed.SetActive(false);
 		LoadPuzzle();
 		countTime = true;										// start counting time
-
-		const string projectID = "42674af6-779c-4748-97c4-0c1023bb17fc";
-		UnityAnalytics.StartSDK(projectID);
 	}
 	
 	void Update(){
@@ -144,11 +140,7 @@ public class Game : MonoBehaviour {
 
 	void SendAnalytics() {
 		string gameLevel = PlayerPrefs.GetString("gamelevel","easy");
-		UnityAnalytics.CustomEvent("gameOver", new Dictionary<string, object>
-		{
-			{ "difficulty", gameLevel },
-			{ "time", gameTime }
-		});
+		GA.API.Design.NewEvent("Time:" + gameLevel,gameTime);
 	}
 	
 	// compare final score
