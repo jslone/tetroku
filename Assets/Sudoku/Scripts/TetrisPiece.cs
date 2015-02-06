@@ -12,6 +12,7 @@ public struct Box {
 }
 
 public class TetrisPiece {
+	private static Matrix4x4 transform = Matrix4x4.identity;
 
 	public List<Box> boxes;
 
@@ -20,15 +21,20 @@ public class TetrisPiece {
 	public TetrisPiece() {
 		boxes = new List<Box>(3);
 		isAnchored =  false;
+		// transform from board to world coords
+		transform.SetRow(0,new Vector4( 1, 0, 0,-4));
+		transform.SetRow(1,new Vector4( 0,-1, 0, 4));
+		transform.SetRow(2,new Vector4( 0, 0, 1, 0));
+		transform.SetRow(3,new Vector4( 0, 0, 0, 1));
+
 	}
 
 	public TetrisPiece(Vector2 firstSolPos, Vector2 secondSolPos,
 	                   Vector2 thirdSolPos, int firstVal, 
 	                   int secondVal, int thirdVal) : this() {
-
-		boxes.Add(new Box(firstSolPos,firstVal));
-		boxes.Add(new Box(secondSolPos,secondVal));
-		boxes.Add(new Box(thirdSolPos,thirdVal));
+		boxes.Add(new Box(transform.MultiplyPoint3x4(firstSolPos),firstVal));
+		boxes.Add(new Box(transform.MultiplyPoint3x4(secondSolPos),secondVal));
+		boxes.Add(new Box(transform.MultiplyPoint3x4(thirdSolPos),thirdVal));
 	}
 
 }

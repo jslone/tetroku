@@ -212,7 +212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 3
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &6125013
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -363,7 +363,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 1
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &20058285
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -466,7 +466,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 9
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &36865662
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -639,7 +639,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f145222884d8c3943b5102c2893ed7a6, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f145222884d8c3943b5102c2893ed7a6, type: 3}
@@ -784,7 +784,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 8
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &51963884
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -887,7 +887,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 7
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &52184354
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1086,7 +1086,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 4
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &162289029
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1145,7 +1145,7 @@ Transform:
   m_LocalScale: {x: 0, y: 0, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
 --- !u!1 &186579924
 GameObject:
   m_ObjectHideFlags: 0
@@ -1236,7 +1236,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 1
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &186579930
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1487,7 +1487,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 2
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &216134892
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1514,7 +1514,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &218835334
 Transform:
   m_ObjectHideFlags: 0
@@ -1536,7 +1536,7 @@ Transform:
   - {fileID: 1327598938}
   - {fileID: 2023204646}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
 --- !u!1 &225947487
 GameObject:
   m_ObjectHideFlags: 0
@@ -1859,7 +1859,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 6
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &249141507
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1962,7 +1962,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 3
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &258826896
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2197,7 +2197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 7
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &292985504
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2348,7 +2348,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 1
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &311652058
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2591,7 +2591,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 8
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &358862370
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2757,7 +2757,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 7
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &374638788
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2899,6 +2899,8 @@ MonoBehaviour:
   - {fileID: 1655902380}
   - {fileID: 39331322}
   markerColor: {r: 0, g: 1, b: 0, a: 1}
+  bl: {x: 0, y: 0, z: 0}
+  ur: {x: 8, y: 8, z: 0}
 --- !u!4 &402764832
 Transform:
   m_ObjectHideFlags: 0
@@ -2913,7 +2915,7 @@ Transform:
   - {fileID: 1655902381}
   - {fileID: 39331323}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
 --- !u!1001 &411491455
 Prefab:
   m_ObjectHideFlags: 0
@@ -3100,7 +3102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 2
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &476576034
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3456,7 +3458,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 1
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &535271293
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3559,7 +3561,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 8
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &537208118
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3662,7 +3664,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 2
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &556133351
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3765,7 +3767,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 9
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &556523093
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3904,7 +3906,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 6
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &573042886
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4119,7 +4121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 6
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &586101379
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4222,7 +4224,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 2
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &594039997
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4325,7 +4327,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 4
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &619051098
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4428,7 +4430,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 2
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &629555504
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4531,7 +4533,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 6
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &630062058
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4745,7 +4747,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 5
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &652672339
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4896,7 +4898,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 3
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &665171028
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5095,7 +5097,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 1
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &671574920
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5198,7 +5200,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 1
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &673577332
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5481,7 +5483,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 5
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &734374811
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5584,7 +5586,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 3
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &739268706
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5687,7 +5689,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 9
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &748269032
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5790,7 +5792,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 2
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &752993640
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5893,7 +5895,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 6
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &764583988
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6137,7 +6139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 9
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &797284781
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6240,7 +6242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 5
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &802312573
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6439,7 +6441,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 9
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &822548410
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6638,7 +6640,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 8
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &868205785
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6741,7 +6743,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 7
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &908466352
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6844,7 +6846,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 9
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &911048310
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6947,7 +6949,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 9
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &914566971
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7050,7 +7052,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 8
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &922869360
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7513,7 +7515,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 1
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &1000322650
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7616,7 +7618,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 8
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &1004945919
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7815,7 +7817,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 4
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &1043508058
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7966,7 +7968,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 3
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &1096943783
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8133,7 +8135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 6
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &1132633344
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8284,7 +8286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 3
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &1148758832
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8483,7 +8485,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 6
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &1172247001
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8579,8 +8581,9 @@ Transform:
   - {fileID: 1509928394}
   - {fileID: 560501153}
   - {fileID: 197793954}
+  - {fileID: 2085130573}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
 --- !u!1 &1207245666
 GameObject:
   m_ObjectHideFlags: 0
@@ -8671,7 +8674,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 7
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &1207245672
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8774,7 +8777,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 9
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &1226887949
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8877,7 +8880,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 4
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &1234188789
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9028,7 +9031,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 2
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &1242248985
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9179,7 +9182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 5
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &1259785260
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9330,7 +9333,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 4
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &1311358226
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9545,7 +9548,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 2
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &1333592592
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9744,7 +9747,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 5
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &1382057448
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10101,7 +10104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 3
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &1434494340
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10204,7 +10207,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 8
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &1434809185
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10307,7 +10310,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 7
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &1441085524
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10494,7 +10497,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 4
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &1475951339
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10707,7 +10710,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 1
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &1506020236
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10958,7 +10961,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 5
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &1529686355
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11109,7 +11112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 8
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &1549685187
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11212,7 +11215,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 1
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &1563605123
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11363,7 +11366,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 3
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &1588505712
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11558,7 +11561,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 4
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &1627630306
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12184,7 +12187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 6
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &1704795185
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12335,7 +12338,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 4
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &1760142882
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12685,7 +12688,7 @@ Transform:
   m_LocalScale: {x: 0, y: 0, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
 --- !u!1001 &1874619535
 Prefab:
   m_ObjectHideFlags: 0
@@ -12824,7 +12827,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 5
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &1882397633
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12991,7 +12994,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 7
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &1884543082
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13158,7 +13161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 9
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &1902069869
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13401,7 +13404,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 4
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &1958618150
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13535,7 +13538,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 8
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &1991412390
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13686,7 +13689,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 5
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &2000173729
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14072,7 +14075,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 5
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &2027821156
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14175,7 +14178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 3
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &2033564364
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14278,7 +14281,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 7
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &2065660890
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14465,7 +14468,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 7
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &2084186780
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14559,11 +14562,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2085130568}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_Father: {fileID: 1192885654}
+  m_RootOrder: 10
 --- !u!114 &2085130574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14892,7 +14895,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 6
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &2100837841
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15043,7 +15046,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 2
   _value: 0
-  canPlace: 0
+  canPlace: 1
 --- !u!65 &2142365721
 BoxCollider:
   m_ObjectHideFlags: 0

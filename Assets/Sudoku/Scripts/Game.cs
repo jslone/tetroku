@@ -12,6 +12,8 @@ public class Game : MonoBehaviour {
 	public GameObject[] box7;			//
 	public GameObject[] box8;			//
 	public GameObject[] box9;			//
+
+	public SpliceBoard splicer;
 	
 	public Texture[] num;						// number textures
 	public Texture[] lockNum;			// locked number textures
@@ -45,7 +47,7 @@ public class Game : MonoBehaviour {
 		texSolved.SetActive(false);
 		texFailed.SetActive(false);
 		LoadPuzzle();
-		RemoveNumbers();									// remove some numbers
+		//RemoveNumbers();									// remove some numbers
 		countTime = true;										// start counting time
 	}
 	
@@ -231,16 +233,31 @@ public class Game : MonoBehaviour {
 		string puzzle = "";																				// puzzle
 		
 		puzzle = GameObject.FindWithTag("database").GetComponent<PuzzleDatabase>().SelectPuzzle();				// get puzzle
+		splicer = new SpliceBoard();
+		splicer.splicePuzzle(puzzle);
 
 		for(int x = 1; x < 10; x++){
 			for(int y = 1; y < 10; y++){
-				fn = x.ToString() + y.ToString();			// create field name
 				i++;																	//
 				no = int.Parse(puzzle[i].ToString());	// create number
-				GameObject.Find(fn).GetComponent<Field>().value = no;								// set value
-				GameObject.Find(fn).renderer.material.mainTexture = lockNum[no];			// set texture
 				code[x,y] = no;											// save field value
 			}
+		}
+
+		foreach(Vector2 extra in splicer.extras) {
+			Debug.Log(extra);
+			int x = Mathf.RoundToInt(extra.x) + 1;
+			int y = Mathf.RoundToInt(extra.y) + 1;
+			fn = x.ToString() + y.ToString();
+			no = code[x,y];
+			Debug.Log(no);
+			GameObject go = GameObject.Find(fn);
+
+			Field f = go.GetComponent<Field>();
+			f.value = no;
+			f.canPlace = false;
+
+			go.renderer.material.mainTexture = lockNum[no];			// set texture
 		}
 	}
 	
