@@ -232,13 +232,13 @@ public class Game : MonoBehaviour {
 		string gameLevel = PlayerPrefs.GetString("gamelevel","easy");
 		switch(gameLevel) {
 			case "easy":
-				noPieces = Random.Range(10,15);
+				noPieces = Random.Range(12,16);
 				break;
 			case "medium":
-				noPieces = Random.Range(5,10);
+				noPieces = Random.Range(8,12);
 				break;
 			default:
-				noPieces = Random.Range(0,5);
+				noPieces = Random.Range(4,8);
 				break;
 		}
 

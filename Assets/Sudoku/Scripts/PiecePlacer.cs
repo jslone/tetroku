@@ -37,8 +37,7 @@ public class PiecePlacer : MonoBehaviour {
 				lbl = Vector2.Min(lbl,lPos);
 				lur = Vector2.Max(lur,lPos);
 			}
-			//transform.localPosition = Vector3.zero;
-			transform.position = new Vector3(-4,-4,0);
+			transform.localPosition = Vector3.zero;
 			// transform bounding box
 			bl = bbl - (Vector3)lbl;
 			ur = bur - (Vector3)lur;
