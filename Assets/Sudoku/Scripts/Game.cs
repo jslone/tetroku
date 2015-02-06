@@ -227,6 +227,34 @@ public class Game : MonoBehaviour {
 			f.canPlace = false;
 			f.value = no;
 		}
+
+		int noPieces;
+		string gameLevel = PlayerPrefs.GetString("gamelevel","easy");
+		switch(gameLevel) {
+			case "easy":
+				noPieces = Random.Range(10,15);
+				break;
+			case "medium":
+				noPieces = Random.Range(5,10);
+				break;
+			default:
+				noPieces = Random.Range(0,5);
+				break;
+		}
+
+		for(int j = 0; j < noPieces; j++) {
+			int index = Random.Range(0,splicer.pieces.Count);
+			TetrisPiece t = splicer.pieces[index];
+			foreach(Box b in t.boxes) {
+				int x = Mathf.RoundToInt(b.pos.x);
+				int y = Mathf.RoundToInt(b.pos.y);
+
+				Field f = board.fields[x,y];
+				f.canPlace = false;
+				f.value = b.value;
+			}
+			splicer.pieces.RemoveAt(index);
+		}
 	}
 	
 	// check column and row
