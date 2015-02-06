@@ -30,12 +30,12 @@ public class Field : MonoBehaviour {
 			bool cr = game.CheckCR(row,col,value);
 			bool cb = game.CheckBox(row,col,value);
 			valid = cr && cb;
-			if(!valid) {
-				sprite.color = Color.red;
-			} else if(canPlace) {
-				sprite.color = Color.white;
-			} else {
+			if(!canPlace) {
 				sprite.color = Color.grey;
+			} else if(!valid) {
+				sprite.color = Color.red;
+			} else {
+				sprite.color = Color.white;
 			}
 		}
 	}
