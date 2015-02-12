@@ -70,9 +70,6 @@ public class GUIMenuButton : MonoBehaviour
 				case 3:			// quit
 					Application.LoadLevel(0);			// quit game
 					break;
-				case 4:			// solve
-					game.DoSolve();							// solve puzzle
-					break;
 			}
 		}
 }

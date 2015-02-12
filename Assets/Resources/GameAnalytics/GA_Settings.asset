@@ -11,9 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d0c0342116464e26abb476a494c827a, type: 3}
   m_Name: GA_Settings
   m_EditorClassIdentifier: 
-  TotalMessagesSubmitted: 0
+  TotalMessagesSubmitted: 5
   TotalMessagesFailed: 0
-  DesignMessagesSubmitted: 0
+  DesignMessagesSubmitted: 5
   DesignMessagesFailed: 0
   QualityMessagesSubmitted: 0
   QualityMessagesFailed: 0
@@ -24,20 +24,20 @@ MonoBehaviour:
   UserMessagesSubmitted: 0
   UserMessagesFailed: 0
   CustomArea: 
-  GameKey: 
-  SecretKey: 
+  GameKey: 2dd1cdcb0a234173dbf3da81fd7f5d56
+  SecretKey: 6c05b581958eb8a76ec225705bc7b2023cfa3314
   Build: 0.1
-  SignUpOpen: 1
+  SignUpOpen: 0
   FirstName: 
   LastName: 
   StudioName: 
-  GameName: 
+  GameName: tetroku
   PasswordConfirm: 
   EmailOptIn: 1
-  EmailGA: 
-  IntroScreen: 1
+  EmailGA: jslone1993@gmail.com
+  IntroScreen: 0
   DebugMode: 1
-  DebugAddEvent: 0
+  DebugAddEvent: 1
   SendExampleGameDataToMyGame: 0
   RunInEditorPlayMode: 1
   UseBundleVersion: 0
@@ -48,16 +48,16 @@ MonoBehaviour:
   DelayQuitToSendData: 1
   CustomUserID: 0
   SubmitInterval: 10
-  InternetConnectivity: 0
+  InternetConnectivity: 1
   Start_AlwaysShowAds: 1
   Start_TimePlayed: 0
   Start_Sessions: 0
   TimePlayed: 300
   Sessions: 1
   Trigger_AdsEnabled: 0
-  Trigger_AdsEnabled_network: 0
+  Trigger_AdsEnabled_network: 1
   Trigger_SceneChange: 1
-  Trigger_SceneChange_network: 0
+  Trigger_SceneChange_network: 1
   IAD_foldout: 1
   IAD_enabled: 1
   CB_enabled: 0
@@ -66,10 +66,10 @@ MonoBehaviour:
   IAD_position: {x: 0, y: 0}
   IAD_Duration: 10
   CB_foldout: 1
-  CurrentInspectorState: 0
+  CurrentInspectorState: 2
   ClosedHints: 
   DisplayHints: 0
   DisplayHintsScrollState: {x: 0, y: 0}
-  Logo: {fileID: 0}
-  UpdateIcon: {fileID: 0}
+  Logo: {fileID: 2800000, guid: 98df8f9c5678a4e5d964caa1244e8958, type: 3}
+  UpdateIcon: {fileID: 2800000, guid: 810bbb19deed24f3cb7b854f9bafde26, type: 3}
   CustomAdTriggers: []

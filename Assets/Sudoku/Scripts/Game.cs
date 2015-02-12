@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -13,7 +14,9 @@ public class Game : MonoBehaviour {
 	public GUITexture[] buttons;		// gui texture buttons
 
 	public GameObject gameButtons;		// game menu buttons
-	
+
+	public Text time;
+
 	float gameTime = 0.0f;								// game play time
 	int hrs = 0;														// hours
 	int min = 0;														// minutes
@@ -25,7 +28,6 @@ public class Game : MonoBehaviour {
 	int[,] code = new int[9,9];						// solved puzzle
 	
 	public GameObject texSolved;				// solved gui texture
-	public GameObject texFailed;					// failed gui texture
 	
 	public GameObject gen;							// generating puzzle gui texture
 	public AudioClip clickSound;					// click sound
@@ -33,7 +35,6 @@ public class Game : MonoBehaviour {
 	void Start (){
 		gen.SetActive(false);								// disable some objects
 		texSolved.SetActive(false);
-		texFailed.SetActive(false);
 		LoadPuzzle();
 		countTime = true;										// start counting time
 	}
@@ -49,6 +50,8 @@ public class Game : MonoBehaviour {
 		}else{
 			audio.volume = 0.0f;
 		}
+
+		if(Input.GetKeyDown(KeyCode.Escape)) SwitchMenu();
 	}
 	
 	void LateUpdate(){
@@ -61,7 +64,6 @@ public class Game : MonoBehaviour {
 	void CountTime(){
 		gameTime += 1*Time.deltaTime;		// count time
 		timeFormat = "";										// clear time string
-		
 		sec = (int)(gameTime % 60.0f);			// get seconds
 		min = (int)(gameTime / 60.0f);				// get minutes
 		hrs = (int)(gameTime / 3600.0f);			// get hours
@@ -81,7 +83,7 @@ public class Game : MonoBehaviour {
 		}else{
 			timeFormat = timeFormat +sec.ToString();
 		}
-		GameObject.Find("GameTime").guiText.text = timeFormat;		// set gui text
+		time.text = timeFormat;		// set gui text
 	}
 	
 	// check if puzzle is solved
@@ -188,23 +190,6 @@ public class Game : MonoBehaviour {
 		}
 	}
 	
-	// solve puzzle
-	public void DoSolve(){
-		if(!solved){												//
-			for(int x = 0; x < 9; x++){				//
-				for(int y = 0; y < 9; y++){			//
-					Field f = board.fields[x,y];
-					if(f.canPlace) {
-						f.value = code[x,y];
-					}
-				}
-			}
-			solved = true;								// set solved
-			countTime = false;					// stop counting time
-			texFailed.SetActive(true);		// show gui texture
-		}
-	}
-	
 	// load prefab puzzle
 	void LoadPuzzle(){
 		int i = 0;								// index number
@@ -300,7 +285,7 @@ public class Game : MonoBehaviour {
 	
 	// change menu
 	public void SwitchMenu(){
-		gameButtons.SetActive(true);														// show game menu
+		gameButtons.SetActive(!gameButtons.activeSelf);														// show game menu
 	}
 	
 	public void PlayClick(){
