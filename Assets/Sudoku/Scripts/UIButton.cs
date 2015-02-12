@@ -19,13 +19,13 @@ public class UIButton : MonoBehaviour {
 	public void OnClick() {
 		switch(action) {
 			case ButtonAction.GAME_EASY:
-				PlayerPrefs.SetString("gameLevel", "easy");
+				PlayerPrefs.SetString("gamelevel", "easy");
 				goto case ButtonAction.GAME_NEW;
 			case ButtonAction.GAME_MED:
-				PlayerPrefs.SetString("gameLevel", "medium");
+				PlayerPrefs.SetString("gamelevel", "medium");
 				goto case ButtonAction.GAME_NEW;
 			case ButtonAction.GAME_HARD:
-				PlayerPrefs.SetString("gameLevel", "hard");
+				PlayerPrefs.SetString("gamelevel", "hard");
 				goto case ButtonAction.GAME_NEW;
 			case ButtonAction.GAME_NEW:
 				Application.LoadLevel(4); // game scene
