@@ -111,7 +111,7 @@ public class Game : MonoBehaviour {
 		string gameLevel = "";							// play level
 		bool canSave = false;							// can score be saved
 		string lb = "";											// last best score
-		string cs = GameObject.Find("GameTime").guiText.text;				// get current score
+		string cs = time.text;				// get current score
 		
 		gameLevel = PlayerPrefs.GetString("gamelevel","easy");					// get play level
 		
