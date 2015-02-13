@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public enum Difficulty {
@@ -15,11 +16,14 @@ public class UIScore : MonoBehaviour {
 		int time;
 		switch(difficulty) {
 			case Difficulty.EASY:
+				break;
 			case Difficulty.MEDIUM:
+				break;
 			case Difficulty.HARD:
+				break;
 		}
-		int time = PlayerPrefs.GetInt("")
-		GetComponent<UI.Text>().text = PlayerPrefs.GetInt()
+		time = PlayerPrefs.GetInt("");
+		GetComponent<Text>().text = "";
 	}
 	
 	// Update is called once per frame
