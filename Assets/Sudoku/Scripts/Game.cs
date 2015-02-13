@@ -30,6 +30,8 @@ public class Game : MonoBehaviour {
 	public GameObject texSolved;				// solved gui texture
 	
 	public GameObject gen;							// generating puzzle gui texture
+	
+	public bool paused { get { return gameButtons.activeSelf; } }
 
 	void Start (){
 		gen.SetActive(false);								// disable some objects

@@ -12,6 +12,10 @@ public class PiecePlacer : MonoBehaviour {
 
 	public Vector3 bl = bbl;
 	public Vector3 ur = bur;
+	
+	public float speed = 1.0f;
+	
+	public Vector3 position;
 
 	private int PieceIdx = 0;
 	private TetrisPiece _piece = null;
@@ -38,6 +42,7 @@ public class PiecePlacer : MonoBehaviour {
 				lur = Vector2.Max(lur,lPos);
 			}
 			transform.localPosition = Vector3.zero;
+			position = transform.position;
 			// transform bounding box
 			bl = bbl - (Vector3)lbl;
 			ur = bur - (Vector3)lur;
@@ -46,6 +51,7 @@ public class PiecePlacer : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		position = transform.position;
 		foreach(GameObject pm in pieceMarkers) {
 			pm.renderer.material.color = markerColor;
 		}
@@ -56,22 +62,29 @@ public class PiecePlacer : MonoBehaviour {
 		if(Piece == null) {
 			GetNextPiece();
 		}
-		// move the piece around
-		Vector3 pos = transform.position;
-		pos.x -= System.Convert.ToInt32(Input.GetKeyDown(KeyCode.LeftArrow));
-		pos.x += System.Convert.ToInt32(Input.GetKeyDown(KeyCode.RightArrow));
-		pos.y += System.Convert.ToInt32(Input.GetKeyDown(KeyCode.UpArrow));
-		pos.y -= System.Convert.ToInt32(Input.GetKeyDown(KeyCode.DownArrow));
-
-
-		// clamp piece inside board
-		transform.position = Vector3.Max(bl,Vector3.Min(ur,pos));
-
-		// try to place the piece
-		if(Input.GetKeyDown(KeyCode.Space) && Place ()) {
-			// move to the next piece
-			GetNextPiece();
-			transform.localPosition = Vector3.zero;
+		
+		if(!game.paused) {
+			float x = speed * Input.GetAxis("Horizontal") * Time.deltaTime;
+			float y = speed * Input.GetAxis("Vertical") * Time.deltaTime;
+			x -= System.Convert.ToInt32(Input.GetKeyDown(KeyCode.LeftArrow));
+			x += System.Convert.ToInt32(Input.GetKeyDown(KeyCode.RightArrow));
+			y -= System.Convert.ToInt32(Input.GetKeyDown(KeyCode.DownArrow));
+			y += System.Convert.ToInt32(Input.GetKeyDown(KeyCode.UpArrow));
+			
+			position.x += x;
+			position.y += y;
+			
+			// clamp piece inside board
+			position = Vector3.Max(bl,Vector3.Min(ur,position));
+			
+			Vector3 roundedPos = new Vector3(Mathf.Round(position.x), Mathf.Round(position.y), Mathf.Round(position.z));
+			transform.position = roundedPos;
+			
+			// try to place the piece
+			if(Input.GetKeyDown(KeyCode.Space) && Place ()) {
+				// move to the next piece
+                GetNextPiece();
+            }
 		}
 	}
 

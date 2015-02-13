@@ -1445,7 +1445,31 @@ Prefab:
       objectReference: {fileID: 2085130572}
     - target: {fileID: 22403888, guid: 9f8373d08ef904d59a114eb85517de0c, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -100
+      value: -80
+      objectReference: {fileID: 0}
+    - target: {fileID: 11403886, guid: 9f8373d08ef904d59a114eb85517de0c, type: 2}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11403886, guid: 9f8373d08ef904d59a114eb85517de0c, type: 2}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11403886, guid: 9f8373d08ef904d59a114eb85517de0c, type: 2}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11403886, guid: 9f8373d08ef904d59a114eb85517de0c, type: 2}
+      propertyPath: m_Color.a
+      value: .392156869
+      objectReference: {fileID: 0}
+    - target: {fileID: 22480522, guid: 9f8373d08ef904d59a114eb85517de0c, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22480512, guid: 9f8373d08ef904d59a114eb85517de0c, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9f8373d08ef904d59a114eb85517de0c, type: 2}
@@ -1795,6 +1819,8 @@ MonoBehaviour:
   markerColor: {r: 0, g: 1, b: 0, a: 1}
   bl: {x: 0, y: 0, z: 0}
   ur: {x: 8, y: 8, z: 0}
+  speed: 5
+  position: {x: 0, y: 0, z: 0}
 --- !u!4 &402764832
 Transform:
   m_ObjectHideFlags: 0
@@ -2193,7 +2219,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 536039176}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_AnchorMin: {x: .5, y: 1}
   m_AnchorMax: {x: .5, y: 1}
   m_AnchoredPosition: {x: 0, y: -5}
@@ -2857,8 +2883,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 483986700}
   - {fileID: 1289356326}
+  - {fileID: 483986700}
   - {fileID: 1866831824}
   - {fileID: 1796395510}
   - {fileID: 518460003}
@@ -6480,7 +6506,7 @@ RectTransform:
   - {fileID: 1020483118}
   - {fileID: 1395265668}
   m_Father: {fileID: 536039176}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 0, y: -164}
@@ -7389,7 +7415,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .39199999}
+  m_Color: {r: 0, g: 0, b: 0, a: .392156869}
   m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -8970,7 +8996,7 @@ RectTransform:
   m_RootOrder: 3
   m_AnchorMin: {x: .5, y: 1}
   m_AnchorMax: {x: .5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -100}
+  m_AnchoredPosition: {x: 0, y: -80}
   m_SizeDelta: {x: 200, y: 40}
   m_Pivot: {x: .5, y: 1}
 --- !u!114 &1796395511
@@ -9935,7 +9961,6 @@ MonoBehaviour:
   solved: 0
   texSolved: {fileID: 1866831823}
   gen: {fileID: 518460001}
-  clickSound: {fileID: 8300000, guid: b8a08224a96d8664ab3199f06a95e562, type: 3}
 --- !u!1 &2103250273
 GameObject:
   m_ObjectHideFlags: 0
