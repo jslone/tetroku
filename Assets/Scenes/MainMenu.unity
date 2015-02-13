@@ -314,6 +314,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 11418342, guid: 16bb76cbc914e476cb456fa5a86902fd, type: 2}
+        m_MethodName: PlayPositive
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &227441231
@@ -717,6 +729,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 11418342, guid: 16bb76cbc914e476cb456fa5a86902fd, type: 2}
+        m_MethodName: PlayPositive
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &764401193
@@ -834,7 +858,7 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 5
---- !u!1001 &1090750036
+--- !u!1001 &1187867521
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -872,10 +896,6 @@ Prefab:
     - target: {fileID: 485582, guid: 16bb76cbc914e476cb456fa5a86902fd, type: 2}
       propertyPath: m_RootOrder
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8235880, guid: 16bb76cbc914e476cb456fa5a86902fd, type: 2}
-      propertyPath: m_PlayOnAwake
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 16bb76cbc914e476cb456fa5a86902fd, type: 2}
@@ -955,7 +975,7 @@ CanvasRenderer:
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 185582, guid: 16bb76cbc914e476cb456fa5a86902fd, type: 2}
-  m_PrefabInternal: {fileID: 1090750036}
+  m_PrefabInternal: {fileID: 1187867521}
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1340258269}
@@ -977,7 +997,7 @@ MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 11418342, guid: 16bb76cbc914e476cb456fa5a86902fd,
     type: 2}
-  m_PrefabInternal: {fileID: 1090750036}
+  m_PrefabInternal: {fileID: 1187867521}
   m_GameObject: {fileID: 1340258266}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -995,7 +1015,7 @@ AudioSource:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 8285582, guid: 16bb76cbc914e476cb456fa5a86902fd,
     type: 2}
-  m_PrefabInternal: {fileID: 1090750036}
+  m_PrefabInternal: {fileID: 1187867521}
   m_GameObject: {fileID: 1340258266}
   m_Enabled: 1
   serializedVersion: 3
@@ -1053,7 +1073,7 @@ AudioSource:
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 485582, guid: 16bb76cbc914e476cb456fa5a86902fd, type: 2}
-  m_PrefabInternal: {fileID: 1090750036}
+  m_PrefabInternal: {fileID: 1187867521}
   m_GameObject: {fileID: 1340258266}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -1066,7 +1086,7 @@ AudioSource:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 8235886, guid: 16bb76cbc914e476cb456fa5a86902fd,
     type: 2}
-  m_PrefabInternal: {fileID: 1090750036}
+  m_PrefabInternal: {fileID: 1187867521}
   m_GameObject: {fileID: 1340258266}
   m_Enabled: 1
   serializedVersion: 3
@@ -1125,7 +1145,7 @@ AudioSource:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 8235884, guid: 16bb76cbc914e476cb456fa5a86902fd,
     type: 2}
-  m_PrefabInternal: {fileID: 1090750036}
+  m_PrefabInternal: {fileID: 1187867521}
   m_GameObject: {fileID: 1340258266}
   m_Enabled: 1
   serializedVersion: 3
@@ -1184,7 +1204,7 @@ AudioSource:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 8235882, guid: 16bb76cbc914e476cb456fa5a86902fd,
     type: 2}
-  m_PrefabInternal: {fileID: 1090750036}
+  m_PrefabInternal: {fileID: 1187867521}
   m_GameObject: {fileID: 1340258266}
   m_Enabled: 1
   serializedVersion: 3
@@ -1243,7 +1263,7 @@ AudioSource:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 8235880, guid: 16bb76cbc914e476cb456fa5a86902fd,
     type: 2}
-  m_PrefabInternal: {fileID: 1090750036}
+  m_PrefabInternal: {fileID: 1187867521}
   m_GameObject: {fileID: 1340258266}
   m_Enabled: 1
   serializedVersion: 3
@@ -1404,6 +1424,18 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1680531566}
         m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11418342, guid: 16bb76cbc914e476cb456fa5a86902fd, type: 2}
+        m_MethodName: PlayNegative
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1776,6 +1808,18 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2090376906}
         m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11418342, guid: 16bb76cbc914e476cb456fa5a86902fd, type: 2}
+        m_MethodName: PlayPositive
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

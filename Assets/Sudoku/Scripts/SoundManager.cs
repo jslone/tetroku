@@ -14,16 +14,16 @@ public class SoundManager : MonoBehaviour {
 	public AudioSource[] soundEffects;
 	
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		if(_instance == null) {
+			DontDestroyOnLoad(gameObject);
+			_instance = this;
+			
 			float svol = PlayerPrefs.GetFloat("soundVolume",1.0f);
 			float mvol = PlayerPrefs.GetFloat("musicVolume",1.0f);
 			
-			AudioListener.volume = svol;
-			music.volume = mvol;
-			
-			DontDestroyOnLoad(gameObject);
-			_instance = this;
+			ChangeSoundVolume(svol);
+			ChangeMusicVolume(mvol);
 		} else {
 			Destroy(gameObject);
 		}
@@ -41,5 +41,21 @@ public class SoundManager : MonoBehaviour {
 	
 	public static void Play(SOUND_EFFECTS effect) {
 		_instance.soundEffects[(int)(effect)].Play();
+	}
+	
+	public void PlayPositive() {
+		Play (SOUND_EFFECTS.POSITIVE);
+	}
+	
+	public void PlayNegative() {
+		Play (SOUND_EFFECTS.NEGATIVE);
+	}
+	
+	public void PlayNeutral() {
+		Play (SOUND_EFFECTS.NEUTRAL);
+	}
+	
+	public void PlayError() {
+		Play (SOUND_EFFECTS.ERROR);
 	}
 }
