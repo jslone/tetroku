@@ -30,7 +30,6 @@ public class Game : MonoBehaviour {
 	public GameObject texSolved;				// solved gui texture
 	
 	public GameObject gen;							// generating puzzle gui texture
-	public AudioClip clickSound;					// click sound
 
 	void Start (){
 		gen.SetActive(false);								// disable some objects
@@ -42,13 +41,6 @@ public class Game : MonoBehaviour {
 	void Update(){
 		if(countTime){
 			CountTime();																					// count time
-		}
-		string svol = PlayerPrefs.GetString("soundvolume","on");		// get sound volume
-		
-		if(svol == "on"){
-			audio.volume = 1.0f;																				// set sound volume
-		}else{
-			audio.volume = 0.0f;
 		}
 
 		if(Input.GetKeyDown(KeyCode.Escape)) SwitchMenu();
@@ -178,18 +170,6 @@ public class Game : MonoBehaviour {
 		return cs;									// return can save
 	}
 	
-	// clear puzzle
-	public void DoClear(){	
-		if(!solved){								// not solved
-			Field[] f = FindObjectsOfType(typeof(Field)) as Field[];			// find all fields
-			foreach(Field fl in f) {
-				if(fl.canPlace == true){								// if can place
-					fl.value = 0;												// set field value
-				}
-			}
-		}
-	}
-	
 	// load prefab puzzle
 	void LoadPuzzle(){
 		int i = 0;								// index number
@@ -259,15 +239,6 @@ public class Game : MonoBehaviour {
 		return cp;															// return can place
 	}
 	
-	// reset table
-	void Reset(){
-		Field[] f = FindObjectsOfType(typeof(Field)) as Field[];		// find all fields
-		foreach(Field fl in f){
-			fl.value = 0;						// reset value
-			fl.canPlace = true;			// reset can place
-		}
-	}
-	
 	// check for same numbers in box
 	public bool CheckBox(int x, int y, int val){				//
 		bool cp = true;
@@ -286,10 +257,6 @@ public class Game : MonoBehaviour {
 	// change menu
 	public void SwitchMenu(){
 		gameButtons.SetActive(!gameButtons.activeSelf);														// show game menu
-	}
-	
-	public void PlayClick(){
-		audio.PlayOneShot(clickSound);													// play sound
 	}
 }
 

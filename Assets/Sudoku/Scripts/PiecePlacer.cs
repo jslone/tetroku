@@ -82,7 +82,6 @@ public class PiecePlacer : MonoBehaviour {
 
 		// check if each element can be placed
 		for(int i = 0; i < Piece.boxes.Count; i++) {
-			Box b = Piece.boxes[i];
 			Vector3 pos = pieceMarkers[i].transform.position;
 			// look for piece at location
 			Collider2D col;
@@ -93,10 +92,6 @@ public class PiecePlacer : MonoBehaviour {
 
 					// store field to modify if we can place
 					fs.Add(f);
-
-					// anchor only if every piece can be anchored
-					Vector2 opos = col.transform.position;
-
 					continue;
 				}
 			}
