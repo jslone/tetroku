@@ -68,8 +68,8 @@ public class PiecePlacer : MonoBehaviour {
 			Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			if(Mathf.Abs(Input.GetAxis("Mouse X")) > 0 &&
 				Mathf.Abs(Input.GetAxis("Mouse Y")) > 0 &&
-				mousePos.x >= bl.x && mousePos.x <= ur.x &&
-				mousePos.y >= bl.y && mousePos.y <= ur.y) {
+				mousePos.x >= bbl.x - 1 && mousePos.x <= bur.x + 1 &&
+				mousePos.y >= bbl.y - 1 && mousePos.y <= bur.y + 1) {
 				position = mousePos;
 			}
 			
