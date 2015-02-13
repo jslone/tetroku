@@ -12,6 +12,14 @@ public class Field : MonoBehaviour {
 		set {
 			_value = value;
 			sprite.sprite = game.num[value];
+			valid = game.CheckBoard(row,col,value);
+			if(!canPlace) {
+				sprite.color = game.LockColor;
+			} else if(!valid) {
+				sprite.color = game.BadColor;
+			} else {
+				sprite.color = game.NeutralColor;
+			}
 		}
 	}
 	public bool valid = true;
@@ -24,67 +32,4 @@ public class Field : MonoBehaviour {
 	void Awake(){
 		sprite = GetComponent<SpriteRenderer>();
 	}
-
-	void Update() {
-		if(value > 0) {
-			bool cr = game.CheckCR(row,col,value);
-			bool cb = game.CheckBox(row,col,value);
-			valid = cr && cb;
-			if(!canPlace) {
-				sprite.color = game.LockColor;
-			} else if(!valid) {
-				sprite.color = game.BadColor;
-			} else {
-				sprite.color = game.NeutralColor;
-			}
-		}
-	}
-/*
-#if UNITY_STANDALONE || UNITY_WEBPLAYER
-	void OnMouseUp(){
-		if(game.solved == false){					// puzzle not solved
-			if(canPlace){										// can place number
-				if(game.selected != null){			// field is selected
-					game.selected.renderer.material.mainTexture = game.num[0];			// set texture
-					game.selected.GetComponent<Field>().value = 0;									// set value
-					game.selected = gameObject;																			// select field
-				}else{
-					renderer.material.mainTexture = game.num[0];										// set texture
-					value = 0;																													// set value
-					game.selected = gameObject;																			// select field
-				}
-			}
-		}
-	}
-#endif
-#if UNITY_ANDROID
-	void Update(){
-		touch = Input.touches;
-		if(touch.Length > 0){
-			if(touch[0].phase == TouchPhase.Ended){
-				Ray ray = Camera.main.ScreenPointToRay (touch[0].position);								// create ray
-				RaycastHit hit;																										// hit info
-				
-				if(Physics.Raycast (ray,out hit, 1000)) {																// cast a ray
-					if(hit.collider.gameObject == gameObject){
-						if(game.solved == false){																				// puzzle not solved
-							if(canPlace){																								// can place number
-								if(game.selected != null){																		// field is selected
-									game.selected.renderer.material.mainTexture = game.num[0];			// set texture
-									game.selected.GetComponent<Field>().value = 0;									// set value
-									game.selected = gameObject;																			// select field
-								}else{
-									renderer.material.mainTexture = game.num[0];										// set texture
-									value = 0;																													// set value
-									game.selected = gameObject;																			// select field
-								}
-							}
-						}
-					}
-				}	
-			}
-		}
-	}
-#endif
-*/
 }

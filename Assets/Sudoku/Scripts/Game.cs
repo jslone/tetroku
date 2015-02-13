@@ -233,6 +233,10 @@ public class Game : MonoBehaviour {
 		}
 	}
 	
+	public bool CheckBoard(int row, int col, int value) {
+		return code[row,col] == value;
+	} 
+	
 	// check column and row
 	public bool CheckCR(int x, int y, int val){				// first number, second number, value
 		bool cp = true;												// can place

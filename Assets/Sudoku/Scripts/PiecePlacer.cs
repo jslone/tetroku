@@ -91,7 +91,7 @@ public class PiecePlacer : MonoBehaviour {
 			transform.position = roundedPos;
 			
 			// try to place the piece
-			if(Input.GetAxis("Submit") > 0 && Place ()) {
+			if(Input.GetButtonDown("Submit") && Place ()) {
 				// move to the next piece
                 GetNextPiece();
             }
