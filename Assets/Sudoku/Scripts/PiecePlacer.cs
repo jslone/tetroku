@@ -85,6 +85,8 @@ public class PiecePlacer : MonoBehaviour {
                 GetNextPiece();
             }
 		}
+		
+		position = Vector3.Lerp(position,transform.position,0.1f);
 	}
 
 	// Check if each element can be placed, if so, set board
