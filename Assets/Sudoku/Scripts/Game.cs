@@ -201,7 +201,7 @@ public class Game : MonoBehaviour {
 
 			Field f = board.fields[x,y];
 			f.canPlace = false;
-			f.value = no;
+			f.SetValue(no);
 		}
 
 		int noPieces;
@@ -227,7 +227,7 @@ public class Game : MonoBehaviour {
 
 				Field f = board.fields[x,y];
 				f.canPlace = false;
-				f.value = b.value;
+				f.SetValue(b.value);
 			}
 			splicer.pieces.RemoveAt(index);
 		}

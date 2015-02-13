@@ -58,6 +58,9 @@ public class PiecePlacer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if(game.solved) {
+			Destroy(gameObject);
+		}
 		if(Piece == null) {
 			GetNextPiece();
 		}
@@ -91,9 +94,13 @@ public class PiecePlacer : MonoBehaviour {
 			transform.position = roundedPos;
 			
 			// try to place the piece
-			if(Input.GetButtonDown("Submit") && Place ()) {
-				// move to the next piece
-                GetNextPiece();
+			if(Input.GetButtonDown("Submit")) {
+				if(Place ()) {
+					// move to the next piece
+					GetNextPiece();
+                } else {
+                	// play invalid sound
+                }
             }
 		}
 		
@@ -123,16 +130,24 @@ public class PiecePlacer : MonoBehaviour {
 			return false;
 		}
 		bool anchor = ((Vector2)transform.position - Piece.boxes[0].pos).sqrMagnitude < 0.5f*0.5f;
+		bool rightNumber = true;
 		// place the elements
 		for(int i = 0; i < Piece.boxes.Count; i++) {
 			if(anchor) {
 				fs[i].canPlace = false;
 			}
-			fs[i].value = Piece.boxes[i].value;
+			rightNumber &= fs[i].SetValue(Piece.boxes[i].value);
 		}
 
 		if(anchor) {
 			game.splicer.pieces.RemoveAt(PieceIdx);
+			//play anchor sound
+			// play good sound
+		}
+		else if(rightNumber) {
+			// play neutral sound
+		} else {
+			// play bad sound
 		}
 
 		return true;
