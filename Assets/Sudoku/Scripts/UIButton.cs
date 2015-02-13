@@ -50,7 +50,13 @@ public class UIButton : MonoBehaviour {
 				Application.LoadLevel(0);	// menu scene
 				break;
 			case ButtonAction.MENU_GAME_NEW:
-				Application.LoadLevel(1);	// new game scene
+				if(PlayerPrefs.HasKey("played")) {
+					Application.LoadLevel(1);	// new game scene
+                } else {
+                	PlayerPrefs.SetInt("played",1);
+					Application.LoadLevel(5);	// tutorial scene
+                }
+				
 				break;
 			case ButtonAction.MENU_OPTIONS:
 				Application.LoadLevel(2);	// options scene
