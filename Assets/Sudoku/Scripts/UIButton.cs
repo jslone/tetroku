@@ -17,7 +17,7 @@ public class UIButton : MonoBehaviour {
 	public ButtonAction action;
 	
 	void Update() {
-		if(Input.GetKeyDown(KeyCode.Escape)) {
+		if(Input.GetButtonDown("Cancel")) {
 			switch(action) {
 				case ButtonAction.MENU_MAIN:
 					Application.LoadLevel(0);

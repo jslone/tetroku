@@ -63,6 +63,17 @@ public class PiecePlacer : MonoBehaviour {
 		}
 		
 		if(!game.paused) {
+			
+			// set mouse position if in boundries and has moved
+			Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			if(Mathf.Abs(Input.GetAxis("Mouse X")) > 0 &&
+				Mathf.Abs(Input.GetAxis("Mouse Y")) > 0 &&
+				mousePos.x >= bl.x && mousePos.x <= ur.x &&
+				mousePos.y >= bl.y && mousePos.y <= ur.y) {
+				position = mousePos;
+			}
+			
+			// set movement based on axis (keyboard / controller)
 			float x = speed * Input.GetAxis("Horizontal") * Time.deltaTime;
 			float y = speed * Input.GetAxis("Vertical") * Time.deltaTime;
 			x -= System.Convert.ToInt32(Input.GetKeyDown(KeyCode.LeftArrow));
@@ -80,7 +91,7 @@ public class PiecePlacer : MonoBehaviour {
 			transform.position = roundedPos;
 			
 			// try to place the piece
-			if(Input.GetKeyDown(KeyCode.Space) && Place ()) {
+			if(Input.GetAxis("Submit") > 0 && Place ()) {
 				// move to the next piece
                 GetNextPiece();
             }
