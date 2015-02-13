@@ -7,7 +7,6 @@ public class OneTime : MonoBehaviour {
 	void Start () {
 		if(PlayerPrefs.GetInt("played",0) == 0) {
 			PlayerPrefs.SetInt("played",1);
-			Invoke("Close", 10);
 		} else {
 			Close();
 		}
