@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public enum SOUND_TYPE {
@@ -11,6 +12,16 @@ public class UISound : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
+		float volume = 0.0f;
+		switch(type) {
+			case SOUND_TYPE.MUSIC:
+				volume = PlayerPrefs.GetFloat("musicVolume",1.0f);
+				break;
+			case SOUND_TYPE.SOUND:
+				volume = PlayerPrefs.GetFloat("soundVolume",1.0f);
+				break;
+		}
+		GetComponent<Slider>().value = volume;
 	}
 	
 	// Update is called once per frame
