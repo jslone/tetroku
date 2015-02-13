@@ -20,9 +20,11 @@ public class UIButton : MonoBehaviour {
 		if(Input.GetButtonDown("Cancel")) {
 			switch(action) {
 				case ButtonAction.MENU_MAIN:
+					SoundManager.Play(SOUND_EFFECTS.NEGATIVE);
 					Application.LoadLevel(0);
 					break;
 				case ButtonAction.QUIT:
+					SoundManager.Play(SOUND_EFFECTS.NEGATIVE);
 					Application.Quit();
 					break;
 			}
