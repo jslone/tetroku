@@ -5,7 +5,6 @@ using System.Collections.Generic;
 public class PiecePlacer : MonoBehaviour {
 	public Game game;
 	public GameObject[] pieceMarkers;
-	public Color markerColor;
 
 	private static Vector3 bbl = new Vector3(0,0,0);
 	private static Vector3 bur = new Vector3(8,8,0);
@@ -53,7 +52,7 @@ public class PiecePlacer : MonoBehaviour {
 	void Start () {
 		position = transform.position;
 		foreach(GameObject pm in pieceMarkers) {
-			pm.renderer.material.color = markerColor;
+			pm.renderer.material.color = game.GoodColor;
 		}
 	}
 	

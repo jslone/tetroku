@@ -2,7 +2,6 @@
 using System.Collections;
 
 public class Field : MonoBehaviour {
-
 	public int col;
 	public int row;									// row number
 	public int _value = 0;							// field value
@@ -20,6 +19,7 @@ public class Field : MonoBehaviour {
 	public Game game;										// game script reference
 	Touch[] touch;
 	SpriteRenderer sprite;
+	
 
 	void Awake(){
 		sprite = GetComponent<SpriteRenderer>();
@@ -31,11 +31,11 @@ public class Field : MonoBehaviour {
 			bool cb = game.CheckBox(row,col,value);
 			valid = cr && cb;
 			if(!canPlace) {
-				sprite.color = Color.grey;
+				sprite.color = game.LockColor;
 			} else if(!valid) {
-				sprite.color = Color.red;
+				sprite.color = game.BadColor;
 			} else {
-				sprite.color = Color.white;
+				sprite.color = game.NeutralColor;
 			}
 		}
 	}

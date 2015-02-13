@@ -10,8 +10,10 @@ public class Game : MonoBehaviour {
 	public SpliceBoard splicer;
 	
 	public Sprite[] num;						// number textures
-	//public Sprite[] lockNum;			// locked number textures
-	public GUITexture[] buttons;		// gui texture buttons
+	public Color GoodColor;
+	public Color BadColor;
+	public Color LockColor;
+	public Color NeutralColor;
 
 	public GameObject gameButtons;		// game menu buttons
 
