@@ -100,6 +100,7 @@ public class PiecePlacer : MonoBehaviour {
 					GetNextPiece();
                 } else {
                 	// play invalid sound
+                	SoundManager.Play(SOUND_EFFECTS.ERROR);
                 }
             }
 		}
@@ -143,11 +144,14 @@ public class PiecePlacer : MonoBehaviour {
 			game.splicer.pieces.RemoveAt(PieceIdx);
 			//play anchor sound
 			// play good sound
+			SoundManager.Play(SOUND_EFFECTS.POSITIVE);
 		}
 		else if(rightNumber) {
 			// play neutral sound
+			SoundManager.Play(SOUND_EFFECTS.NEUTRAL);
 		} else {
 			// play bad sound
+			SoundManager.Play(SOUND_EFFECTS.NEGATIVE);
 		}
 
 		return true;

@@ -8,10 +8,9 @@ public enum SOUND_TYPE {
 
 public class UISound : MonoBehaviour {
 	public SOUND_TYPE type;
-	private Sound sound;
+	
 	// Use this for initialization
 	void Start () {
-		sound = GameObject.FindObjectOfType<Sound>();
 	}
 	
 	// Update is called once per frame
@@ -23,11 +22,11 @@ public class UISound : MonoBehaviour {
 		switch(type) {
 			case SOUND_TYPE.MUSIC:
 				PlayerPrefs.SetFloat("musicVolume",v);
-				sound.ChangeMusicVolume(v);
+				SoundManager.ChangeMusicVolume(v);
 				break;
 			case SOUND_TYPE.SOUND:
 				PlayerPrefs.SetFloat("soundVolume",v);
-				sound.ChangeSoundVolume(v);
+				SoundManager.ChangeSoundVolume(v);
 				break;
 		}
 	}
