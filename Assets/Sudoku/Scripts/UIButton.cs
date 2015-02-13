@@ -16,6 +16,19 @@ public enum ButtonAction {
 public class UIButton : MonoBehaviour {
 	public ButtonAction action;
 	
+	void Update() {
+		if(Input.GetKeyDown(KeyCode.Escape)) {
+			switch(action) {
+				case ButtonAction.MENU_MAIN:
+					Application.LoadLevel(0);
+					break;
+				case ButtonAction.QUIT:
+					Application.Quit();
+					break;
+			}
+		}
+	}
+	
 	public void OnClick() {
 		switch(action) {
 			case ButtonAction.GAME_EASY:
