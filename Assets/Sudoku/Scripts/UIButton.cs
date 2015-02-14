@@ -16,21 +16,6 @@ public enum ButtonAction {
 public class UIButton : MonoBehaviour {
 	public ButtonAction action;
 	
-	void Update() {
-		if(Input.GetButtonDown("Cancel")) {
-			switch(action) {
-				case ButtonAction.MENU_MAIN:
-					SoundManager.Play(SOUND_EFFECTS.NEGATIVE);
-					Application.LoadLevel(0);
-					break;
-				case ButtonAction.QUIT:
-					SoundManager.Play(SOUND_EFFECTS.NEGATIVE);
-					Application.Quit();
-					break;
-			}
-		}
-	}
-	
 	public void OnClick() {
 		switch(action) {
 			case ButtonAction.GAME_EASY:

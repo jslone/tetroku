@@ -35,6 +35,8 @@ public class Game : MonoBehaviour {
 	public GameObject gen;							// generating puzzle gui texture
 	
 	public bool paused { get { return gameButtons.activeSelf; } }
+	
+	private bool pressedButton = false;
 
 	void Start (){
 		gen.SetActive(false);								// disable some objects
@@ -48,7 +50,10 @@ public class Game : MonoBehaviour {
 			CountTime();																					// count time
 		}
 
-		if(Input.GetKeyDown(KeyCode.Escape)) SwitchMenu();
+		//if(Input.GetButtonDown("Pause")) SwitchMenu();
+		/*if(Input.GetButtonUp("Pause") || Input.GetButtonUp("Submit")) {
+			pressedButton = false;
+		}*/
 	}
 	
 	void LateUpdate(){
@@ -266,7 +271,7 @@ public class Game : MonoBehaviour {
 	
 	// change menu
 	public void SwitchMenu(){
-		gameButtons.SetActive(!gameButtons.activeSelf);														// show game menu
+		gameButtons.SetActive(!gameButtons.activeSelf);		// show game menu
 	}
 }
 

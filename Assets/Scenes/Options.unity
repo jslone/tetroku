@@ -1449,6 +1449,7 @@ GameObject:
   - 114: {fileID: 1515397042}
   - 114: {fileID: 1515397041}
   - 114: {fileID: 1515397044}
+  - 114: {fileID: 1515397045}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -1578,6 +1579,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   action: 4
+--- !u!114 &1515397045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1515397039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7879e60c577434318bb39789f09e4191, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Button: Cancel
 --- !u!1 &1582998649
 GameObject:
   m_ObjectHideFlags: 0
