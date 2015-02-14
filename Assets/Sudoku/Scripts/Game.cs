@@ -30,6 +30,7 @@ public class Game : MonoBehaviour {
 	int[,] code = new int[9,9];						// solved puzzle
 	
 	public GameObject texSolved;				// solved gui texture
+	public GameObject texInstructions;
 	
 	public GameObject gen;							// generating puzzle gui texture
 	
@@ -95,6 +96,7 @@ public class Game : MonoBehaviour {
 		if(filled == 81){										// if all filled
 			countTime = false;							// stop counting
 			solved = true;										// puzzle is solved
+			texInstructions.SetActive(false);
 			texSolved.SetActive(true);				// show gui texture
 			SaveScore();										// save current score
 			SwitchMenu();									// change menu
