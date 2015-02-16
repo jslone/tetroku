@@ -35,8 +35,6 @@ public class Game : MonoBehaviour {
 	public GameObject gen;							// generating puzzle gui texture
 	
 	public bool paused { get { return gameButtons.activeSelf; } }
-	
-	private bool pressedButton = false;
 
 	void Start (){
 		gen.SetActive(false);								// disable some objects
@@ -49,11 +47,6 @@ public class Game : MonoBehaviour {
 		if(countTime){
 			CountTime();																					// count time
 		}
-
-		//if(Input.GetButtonDown("Pause")) SwitchMenu();
-		/*if(Input.GetButtonUp("Pause") || Input.GetButtonUp("Submit")) {
-			pressedButton = false;
-		}*/
 	}
 	
 	void LateUpdate(){
@@ -267,22 +260,6 @@ public class Game : MonoBehaviour {
 			}
 		}
 		return cp;
-	}
-	
-	// check to see if an identical piece is in the remaining pieces
-	public bool CheckIdenticalPiece(TetrisPiece piece) {
-		foreach(TetrisPiece other in splicer.pieces) {
-			if(piece != other) {
-				bool allMatch = true;
-				Vector2 offset = other.boxes[0].pos - piece.boxes[0].pos;
-				for(int i = 0; i < piece.boxes.Count && allMatch; i++) {
-					allMatch &= piece.boxes[i].value == other.boxes[i].value;
-					allMatch &= (piece.boxes[i].pos - other.boxes[i].pos + offset).sqrMagnitude < 0.5f*0.5f;
-				}
-				if(allMatch) return true;
-			}
-		}
-		return false;
 	}
 	
 	// change menu

@@ -32,7 +32,7 @@ public class PiecePlacer : MonoBehaviour {
 			// set each child to display correctly
 			for(int i = 0; i < pieceMarkers.Length; i++) {
 				// set child position
-				Vector2 lPos = _piece.boxes[i].pos - origin;
+				Vector2 lPos = (Vector2)_piece.boxes[i].pos - origin;
 				pieceMarkers[i].transform.localPosition = lPos;
 
 				// set child texture
@@ -139,36 +139,35 @@ public class PiecePlacer : MonoBehaviour {
 			}
 			return false;
 		}
-		bool anchor = ((Vector2)transform.position - Piece.boxes[0].pos).sqrMagnitude < 0.5f*0.5f;
-		bool oneRight = false;
-		bool allRight = true;
-		// place the elements
-		for(int i = 0; i < Piece.boxes.Count; i++) {
-			fs[i].canPlace = !anchor;
-			bool rightNumber = fs[i].SetValue(Piece.boxes[i].value);
-			oneRight |= rightNumber;
-			allRight &= rightNumber;
-		}
+		Debug.Log(game.splicer.pieces.Count);
+		int anchorIdx = Piece.anchorPiece(transform.position,game.splicer.pieces);
 		
-		if(anchor) {
-			game.splicer.pieces.RemoveAt(PieceIdx);
-			//play anchor sound
-			// play good sound
-			SoundManager.Play(SOUND_EFFECTS.POSITIVE);
-		} else if(allRight && game.CheckIdenticalPiece(Piece)) {
-			// lock all, update sprite
+		if(anchorIdx >= 0) {
 			for(int i = 0; i < Piece.boxes.Count; i++) {
 				fs[i].canPlace = false;
 				fs[i].SetValue(Piece.boxes[i].value);
 			}
-		} else if(oneRight) {
-			// play neutral sound
-			SoundManager.Play(SOUND_EFFECTS.NEUTRAL);
+			SoundManager.Play(SOUND_EFFECTS.POSITIVE);
+			game.splicer.pieces.RemoveAt(anchorIdx);
 		} else {
-			// play bad sound
-			SoundManager.Play(SOUND_EFFECTS.NEGATIVE);
+			bool oneRight = false;
+			bool allRight = true;
+			// place the elements
+			for(int i = 0; i < Piece.boxes.Count; i++) {
+				fs[i].canPlace = true;
+				bool rightNumber = fs[i].SetValue(Piece.boxes[i].value);
+				oneRight |= rightNumber;
+				allRight &= rightNumber;
+			}
+			
+			if(oneRight) {
+				// play neutral sound
+				SoundManager.Play(SOUND_EFFECTS.NEUTRAL);
+			} else {
+				// play bad sound
+				SoundManager.Play(SOUND_EFFECTS.NEGATIVE);
+			}
 		}
-
 		return true;
 	}
 
