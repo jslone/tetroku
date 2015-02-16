@@ -15,7 +15,9 @@ public class PiecePlacer : MonoBehaviour {
 	public float speed = 1.0f;
 	
 	public Vector3 position;
-
+	
+	private bool isClick;
+	
 	private int PieceIdx = 0;
 	private TetrisPiece _piece = null;
 	private TetrisPiece Piece {
@@ -70,10 +72,13 @@ public class PiecePlacer : MonoBehaviour {
 			// set mouse position if in boundries and has moved
 			Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			if(Mathf.Abs(Input.GetAxis("Mouse X")) > 0 &&
-				Mathf.Abs(Input.GetAxis("Mouse Y")) > 0 &&
-				mousePos.x >= bbl.x - 1 && mousePos.x <= bur.x + 1 &&
-				mousePos.y >= bbl.y - 1 && mousePos.y <= bur.y + 1) {
-				position = mousePos;
+				Mathf.Abs(Input.GetAxis("Mouse Y")) > 0) {
+				
+				isClick = false;
+				if(mousePos.x >= bbl.x - 1 && mousePos.x <= bur.x + 1 &&
+					mousePos.y >= bbl.y - 1 && mousePos.y <= bur.y + 1) {
+					position = mousePos;
+                }
 			}
 			
 			// set movement based on axis (keyboard / controller)
@@ -95,6 +100,10 @@ public class PiecePlacer : MonoBehaviour {
 			
 			// try to place the piece
 			if(Input.GetButtonDown("Submit")) {
+				isClick = true;
+			}
+			
+			if(Input.GetButtonUp("Submit") && isClick) {
 				if(Place ()) {
 					// move to the next piece
 					GetNextPiece();
