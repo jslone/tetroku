@@ -10,6 +10,7 @@ public class Game : MonoBehaviour {
 	public SpliceBoard splicer;
 	
 	public Sprite[] num;						// number textures
+	public Sprite[] numWrong;
 	public Color GoodColor;
 	public Color BadColor;
 	public Color LockColor;

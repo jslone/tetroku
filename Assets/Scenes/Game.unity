@@ -12571,6 +12571,17 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 54a4669e8f62859498f2dff07be6d141, type: 3}
   - {fileID: 21300000, guid: b0001aa38d656684c829d47b5b494708, type: 3}
   - {fileID: 21300000, guid: 8717ffe161f85a84badead00a8650a9b, type: 3}
+  numWrong:
+  - {fileID: 0}
+  - {fileID: 21300000, guid: c0ba00a4ef60e4dce913bd7aa03453a7, type: 3}
+  - {fileID: 21300000, guid: 6c1aca52eb1fd42e88ab78b9dc4261c8, type: 3}
+  - {fileID: 21300000, guid: d53389658cd6842b9a071c5a90e6df6e, type: 3}
+  - {fileID: 21300000, guid: 1ea4dbae962b94b38899ad4cc173d4f8, type: 3}
+  - {fileID: 21300000, guid: d1c5db646d27644cf8687cdae86aa2e1, type: 3}
+  - {fileID: 21300000, guid: 00aeea43f14104ab5b164bbf4950f1bb, type: 3}
+  - {fileID: 21300000, guid: f763ff19cbb744c60bfbf4de50716152, type: 3}
+  - {fileID: 21300000, guid: a757ae72a91804ee58169c4a909c1107, type: 3}
+  - {fileID: 21300000, guid: 46121f45e7c6f423a9d94f8dca4a2e42, type: 3}
   GoodColor: {r: .447058827, g: .749019623, b: .800000012, a: 1}
   BadColor: {r: .905882359, g: .298039228, b: .235294119, a: 1}
   LockColor: {r: .501960814, g: .501960814, b: .501960814, a: 1}
@@ -12593,6 +12604,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minWidth: 4.80000019
+  maxSize: 0
 --- !u!1 &2103250273
 GameObject:
   m_ObjectHideFlags: 0
