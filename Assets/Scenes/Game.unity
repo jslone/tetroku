@@ -2851,7 +2851,7 @@ MonoBehaviour:
     m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 100
-    m_Alignment: 1
+    m_Alignment: 4
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
@@ -4048,8 +4048,8 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 32
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
+  m_ReferenceResolution: {x: 500, y: 600}
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -12475,6 +12475,7 @@ GameObject:
   - 92: {fileID: 2085130571}
   - 124: {fileID: 2085130570}
   - 114: {fileID: 2085130574}
+  - 114: {fileID: 2085130575}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -12580,6 +12581,18 @@ MonoBehaviour:
   texSolved: {fileID: 1866831823}
   texInstructions: {fileID: 1753599663}
   gen: {fileID: 518460001}
+--- !u!114 &2085130575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2085130568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2a256be897d246b5a068824bfda9f2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minWidth: 4.80000019
 --- !u!1 &2103250273
 GameObject:
   m_ObjectHideFlags: 0
