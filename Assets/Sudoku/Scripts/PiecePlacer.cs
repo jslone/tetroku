@@ -140,22 +140,28 @@ public class PiecePlacer : MonoBehaviour {
 			return false;
 		}
 		bool anchor = ((Vector2)transform.position - Piece.boxes[0].pos).sqrMagnitude < 0.5f*0.5f;
-		bool rightNumber = true;
+		bool oneRight = false;
+		bool allRight = true;
 		// place the elements
 		for(int i = 0; i < Piece.boxes.Count; i++) {
-			if(anchor) {
-				fs[i].canPlace = false;
-			}
-			rightNumber &= fs[i].SetValue(Piece.boxes[i].value);
+			fs[i].canPlace = !anchor;
+			bool rightNumber = fs[i].SetValue(Piece.boxes[i].value);
+			oneRight |= rightNumber;
+			allRight &= rightNumber;
 		}
-
+		
 		if(anchor) {
 			game.splicer.pieces.RemoveAt(PieceIdx);
 			//play anchor sound
 			// play good sound
 			SoundManager.Play(SOUND_EFFECTS.POSITIVE);
-		}
-		else if(rightNumber) {
+		} else if(allRight && game.CheckIdenticalPiece(Piece)) {
+			// lock all, update sprite
+			for(int i = 0; i < Piece.boxes.Count; i++) {
+				fs[i].canPlace = false;
+				fs[i].SetValue(Piece.boxes[i].value);
+			}
+		} else if(oneRight) {
 			// play neutral sound
 			SoundManager.Play(SOUND_EFFECTS.NEUTRAL);
 		} else {
