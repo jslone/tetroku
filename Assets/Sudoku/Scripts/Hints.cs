@@ -9,14 +9,26 @@ public class Hints : MonoBehaviour {
 	public Button hintButton;
 	public PiecePlacer piecePlacer;
 	public Animator[] borders;
+	public Game game;
 
 	// Use this for initialization
 	void Start () {
 		hintText.text = "Hints: " + numHints;
 	}
 
+	void Update() {
+		if (game.solved && hintButton.enabled) {
+			disableHint();
+		}
+	}
+
+	private void disableHint() {
+		hintButton.enabled = false;
+		hintText.color = hintButton.colors.disabledColor;
+	}
+
 	public void UseHint(){
-		if (numHints > 0) {
+		if (hintButton.enabled) {
 			// Highlight the appropriate 3x3 subboard based on first field
 			Point pos = piecePlacer.Piece.boxes[0].pos;
 
@@ -30,11 +42,11 @@ public class Hints : MonoBehaviour {
 			
 			borders[3*(pos.x/3) + (pos.y/3)].SetTrigger("glow");
 			if (numHints == 0) {
-				hintButton.enabled = false;
-				hintText.color = hintButton.colors.disabledColor;
+				disableHint();
 			}
 		} else {
 			// TODO: play sound effect when disabled
+			SoundManager.Play(SOUND_EFFECTS.ERROR);
 		}
 	}
 }
