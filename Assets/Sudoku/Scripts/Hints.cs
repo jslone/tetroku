@@ -8,6 +8,7 @@ public class Hints : MonoBehaviour {
 	public Text hintText;
 	public Button hintButton;
 	public PiecePlacer piecePlacer;
+	public Animator[] borders;
 
 	// Use this for initialization
 	void Start () {
@@ -17,17 +18,17 @@ public class Hints : MonoBehaviour {
 	public void UseHint(){
 		if (numHints > 0) {
 			// Highlight the appropriate 3x3 subboard based on first field
-			Vector2 pos = piecePlacer.Piece.boxes[0].pos;
+			Point pos = piecePlacer.Piece.boxes[0].pos;
 
 			// Get upper-left position of subboard
 			// leave out the / 3 if you want position in {0, 1, 2}
-			Vector2 subboard = new Vector2(((int) pos.x) / 3 * 3, ((int) pos.y) / 3 * 3);
-			Debug.Log(subboard);
+			
 
 			// TODO: fade in some glowing outline sprite over subboard
 			numHints--;
 			hintText.text = "Hints: " + numHints;
-
+			
+			borders[3*(pos.x/3) + (pos.y/3)].SetTrigger("glow");
 			if (numHints == 0) {
 				hintButton.enabled = false;
 				hintText.color = hintButton.colors.disabledColor;
