@@ -119,12 +119,18 @@ public class Game : MonoBehaviour {
 				if(canSave){																									// if can save
 					PlayerPrefs.SetString("easyscore",cs);											// save current score
 				}
+				if(PlayerPrefs.GetInt("levelUnlocked", 0) == 0) {
+					PlayerPrefs.SetInt("levelUnlocked", 1);
+				}
 				break;
 			case "medium":																								// if medium
 				lb = PlayerPrefs.GetString("mediumscore","99:59:59");
 				canSave = CompareScore(cs,lb);
 				if(canSave){
 					PlayerPrefs.SetString("mediumscore",cs);
+				}
+				if(PlayerPrefs.GetInt("levelUnlocked", 0) == 1) {
+					PlayerPrefs.SetInt("levelUnlocked", 2);
 				}
 				break;
 			case "hard":																										// if hard
