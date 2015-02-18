@@ -10,6 +10,7 @@ public class Game : MonoBehaviour {
 	public SpliceBoard splicer;
 	
 	public Sprite[] num;						// number textures
+	public Sprite[] numWrong;
 	public Color GoodColor;
 	public Color BadColor;
 	public Color LockColor;
@@ -35,8 +36,6 @@ public class Game : MonoBehaviour {
 	public GameObject gen;							// generating puzzle gui texture
 	
 	public bool paused { get { return gameButtons.activeSelf; } }
-	
-	private bool pressedButton = false;
 
 	void Start (){
 		gen.SetActive(false);								// disable some objects
@@ -49,11 +48,6 @@ public class Game : MonoBehaviour {
 		if(countTime){
 			CountTime();																					// count time
 		}
-
-		//if(Input.GetButtonDown("Pause")) SwitchMenu();
-		/*if(Input.GetButtonUp("Pause") || Input.GetButtonUp("Submit")) {
-			pressedButton = false;
-		}*/
 	}
 	
 	void LateUpdate(){

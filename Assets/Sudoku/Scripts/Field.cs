@@ -24,7 +24,7 @@ public class Field : MonoBehaviour {
 		if(!canPlace) {
 			sprite.color = game.LockColor;
 		} else if(!valid) {
-			sprite.color = game.BadColor;
+			sprite.sprite = game.numWrong[value];
 			return false;
 		} else {
 			sprite.color = game.NeutralColor;
