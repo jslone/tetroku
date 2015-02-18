@@ -22,11 +22,17 @@ public class UIButton : MonoBehaviour {
 				PlayerPrefs.SetString("gamelevel", "easy");
 				goto case ButtonAction.GAME_NEW;
 			case ButtonAction.GAME_MED:
-				PlayerPrefs.SetString("gamelevel", "medium");
-				goto case ButtonAction.GAME_NEW;
+				if(PlayerPrefs.GetInt("levelUnlocked", 0) > 0) {
+					PlayerPrefs.SetString("gamelevel", "medium");
+					goto case ButtonAction.GAME_NEW;
+				} 
+				break;
 			case ButtonAction.GAME_HARD:
-				PlayerPrefs.SetString("gamelevel", "hard");
-				goto case ButtonAction.GAME_NEW;
+				if(PlayerPrefs.GetInt("levelUnlocked", 0) > 1) {
+					PlayerPrefs.SetString("gamelevel", "hard");
+					goto case ButtonAction.GAME_NEW;
+				}
+				break;
 			case ButtonAction.GAME_NEW:
 				Application.LoadLevel(4); // game scene
 				break;
