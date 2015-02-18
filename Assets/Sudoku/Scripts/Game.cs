@@ -119,8 +119,8 @@ public class Game : MonoBehaviour {
 				if(canSave){																									// if can save
 					PlayerPrefs.SetString("easyscore",cs);											// save current score
 				}
-				if(PlayerPrefs.GetInt("unlockedLevel", 0) == 0) {
-					PlayerPrefs.SetInt("unlockedLevel", 1);
+				if(PlayerPrefs.GetInt("levelUnlocked", 0) == 0) {
+					PlayerPrefs.SetInt("levelUnlocked", 1);
 				}
 				break;
 			case "medium":																								// if medium
@@ -129,8 +129,8 @@ public class Game : MonoBehaviour {
 				if(canSave){
 					PlayerPrefs.SetString("mediumscore",cs);
 				}
-				if(PlayerPrefs.GetInt("unlockedLevel", 0) == 1) {
-					PlayerPrefs.SetInt("unlockedLevel", 2);
+				if(PlayerPrefs.GetInt("levelUnlocked", 0) == 1) {
+					PlayerPrefs.SetInt("levelUnlocked", 2);
 				}
 				break;
 			case "hard":																										// if hard
