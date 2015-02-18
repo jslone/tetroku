@@ -23,7 +23,7 @@ public class PiecePlacer : MonoBehaviour {
 	
 	private int PieceIdx = 0;
 	private TetrisPiece _piece = null;
-	private TetrisPiece Piece {
+	public TetrisPiece Piece {
 		get {
 			return _piece;
 		}
