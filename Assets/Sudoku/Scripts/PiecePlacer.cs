@@ -78,8 +78,7 @@ public class PiecePlacer : MonoBehaviour {
 				Mathf.Abs(Input.GetAxis("Mouse Y")) > 0) {
 				
 				isClick = false;
-				if(mousePos.x >= bbl.x - 1 && mousePos.x <= bur.x + 1 &&
-					mousePos.y >= bbl.y - 1 && mousePos.y <= bur.y + 1) {
+				if(posInBounds(mousePos)) {
 					position = mousePos;
                 }
 			}
@@ -117,11 +116,11 @@ public class PiecePlacer : MonoBehaviour {
 			transform.position = roundedPos;
 			
 			// try to place the piece
-			if(Input.GetButtonDown("Submit")) {
+			if(Input.GetButtonDown("Submit") || (posInBounds(mousePos) && Input.GetMouseButtonDown(0))) {
 				isClick = true;
 			}
 			
-			if(Input.GetButtonUp("Submit") && isClick) {
+			if((Input.GetButtonUp("Submit") || (posInBounds(mousePos) && Input.GetMouseButtonDown(0))) && isClick) {
 				if(Place ()) {
 					// move to the next piece
 					GetNextPiece();
@@ -133,6 +132,11 @@ public class PiecePlacer : MonoBehaviour {
 		}
 		
 		position = Vector3.Lerp(position,transform.position,0.1f);
+	}
+	
+	bool posInBounds(Vector2 pos) {
+		return pos.x >= bbl.x - 1 && pos.x <= bur.x + 1 &&
+				pos.y >= bbl.y - 1 && pos.y <= bur.y + 1;
 	}
 
 	// Check if each element can be placed, if so, set board
