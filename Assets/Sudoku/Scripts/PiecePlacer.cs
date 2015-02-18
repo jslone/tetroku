@@ -16,7 +16,10 @@ public class PiecePlacer : MonoBehaviour {
 	
 	public Vector3 position;
 	
-	private bool isClick;
+	public float axisDelay;
+	private float lastAxisDown;
+	private bool isClick = false;
+	private bool axisDown = false;
 	
 	private int PieceIdx = 0;
 	private TetrisPiece _piece = null;
@@ -80,17 +83,32 @@ public class PiecePlacer : MonoBehaviour {
 					position = mousePos;
                 }
 			}
-			
 			// set movement based on axis (keyboard / controller)
-			float x = speed * Input.GetAxis("Horizontal") * Time.deltaTime;
-			float y = speed * Input.GetAxis("Vertical") * Time.deltaTime;
-			x -= System.Convert.ToInt32(Input.GetKeyDown(KeyCode.LeftArrow));
-			x += System.Convert.ToInt32(Input.GetKeyDown(KeyCode.RightArrow));
-			y -= System.Convert.ToInt32(Input.GetKeyDown(KeyCode.DownArrow));
-			y += System.Convert.ToInt32(Input.GetKeyDown(KeyCode.UpArrow));
+			float x = Input.GetAxis("Horizontal");
+			float y = Input.GetAxis("Vertical");
+			Vector3 dp = Vector3.zero;
 			
-			position.x += x;
-			position.y += y;
+			if(Mathf.Abs(x) > 0 || Mathf.Abs(y) > 0) {
+				if(!axisDown) {
+					axisDown = true;
+					lastAxisDown = Time.time;
+					
+					if(x < 0) x = Mathf.Floor(x);
+					if(x > 0) x = Mathf.Ceil(x);
+					if(y < 0) y = Mathf.Floor(y);
+					if(y > 0) y = Mathf.Ceil(y);
+					
+					dp.x = x;
+					dp.y = y;
+				} else if(Time.time > lastAxisDown + axisDelay) {
+					dp.x = x * speed * Time.deltaTime;
+					dp.y = y * speed * Time.deltaTime;
+				}
+			} else {
+				axisDown = false;
+			}
+			
+			position += dp;
 			
 			// clamp piece inside board
 			position = Vector3.Max(bl,Vector3.Min(ur,position));

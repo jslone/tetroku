@@ -2243,8 +2243,9 @@ MonoBehaviour:
   - {fileID: 39331322}
   bl: {x: 0, y: 0, z: 0}
   ur: {x: 8, y: 8, z: 0}
-  speed: 5
+  speed: 20
   position: {x: 0, y: 0, z: 0}
+  axisDelay: .200000003
 --- !u!4 &402764832
 Transform:
   m_ObjectHideFlags: 0
