@@ -1813,7 +1813,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 536039176}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -10, y: -10}
@@ -2890,7 +2890,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 536039176}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_AnchorMin: {x: .5, y: 1}
   m_AnchorMax: {x: .5, y: 1}
   m_AnchoredPosition: {x: 0, y: -20}
@@ -3792,7 +3792,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 536039176}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -4069,13 +4069,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
+  - {fileID: 1081247725}
   - {fileID: 1289356326}
   - {fileID: 483986700}
   - {fileID: 1866831824}
   - {fileID: 1796395510}
   - {fileID: 518460003}
   - {fileID: 265273460}
-  - {fileID: 1081247725}
   m_Father: {fileID: 1038996223}
   m_RootOrder: 2
   m_AnchorMin: {x: 0, y: 0}
@@ -7451,12 +7451,12 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1081247724}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 428690479}
   m_Father: {fileID: 536039176}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_AnchorMin: {x: .5, y: 0}
   m_AnchorMax: {x: .5, y: 0}
   m_AnchoredPosition: {x: 0, y: 10}
@@ -7491,7 +7491,7 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
         - m_Target: {fileID: 11418342, guid: 16bb76cbc914e476cb456fa5a86902fd, type: 2}
-          m_MethodName: PlayPositive
+          m_MethodName: PlayError
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -7587,6 +7587,7 @@ MonoBehaviour:
   hintText: {fileID: 428690480}
   hintButton: {fileID: 1081247728}
   piecePlacer: {fileID: 402764831}
+  game: {fileID: 2085130574}
 --- !u!1 &1106655055
 GameObject:
   m_ObjectHideFlags: 0
@@ -8531,7 +8532,7 @@ RectTransform:
   - {fileID: 1395265668}
   - {fileID: 1753599664}
   m_Father: {fileID: 536039176}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_AnchorMin: {x: .5, y: 0}
   m_AnchorMax: {x: .5, y: 0}
   m_AnchoredPosition: {x: 0, y: 10}
@@ -11458,7 +11459,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 536039176}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_AnchorMin: {x: .5, y: 1}
   m_AnchorMax: {x: .5, y: 1}
   m_AnchoredPosition: {x: 0, y: -95}
@@ -11845,7 +11846,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 536039176}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 16, y: 0}
