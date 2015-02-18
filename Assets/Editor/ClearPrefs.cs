@@ -11,7 +11,7 @@ public class ClearPrefs {
 	}
 	
 	private static void OnPlayModeChange() {
-		if(EditorApplication.isPlaying) {
+		if(EditorApplication.isPlaying && !wasPaused) {
 			PlayerPrefs.DeleteKey("played");
 		}
 		else if(EditorApplication.isPaused) {
