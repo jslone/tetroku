@@ -10,6 +10,7 @@ public enum ButtonAction {
 	MENU_GAME_NEW,
 	MENU_OPTIONS,
 	MENU_SCORES,
+	MENU_CREDITS,
 	QUIT
 }
 
@@ -54,6 +55,9 @@ public class UIButton : MonoBehaviour {
 				break;
 			case ButtonAction.MENU_SCORES:
 				Application.LoadLevel(3);	// scores scene
+				break;
+			case ButtonAction.MENU_CREDITS:
+				Application.LoadLevel(6);	// credits scene
 				break;
 			case ButtonAction.QUIT:
 				Application.Quit();
