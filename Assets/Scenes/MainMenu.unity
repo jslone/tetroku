@@ -542,10 +542,10 @@ RectTransform:
   - {fileID: 1680531562}
   m_Father: {fileID: 1937982981}
   m_RootOrder: 1
-  m_AnchorMin: {x: .5, y: .5}
-  m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 0, y: 100}
-  m_SizeDelta: {x: 300, y: 430}
+  m_AnchorMin: {x: .5, y: 1}
+  m_AnchorMax: {x: .5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -230}
+  m_SizeDelta: {x: 300, y: 540}
   m_Pivot: {x: .5, y: 1}
 --- !u!222 &328102158
 CanvasRenderer:
