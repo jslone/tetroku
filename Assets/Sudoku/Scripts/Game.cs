@@ -17,7 +17,7 @@ public class Game : MonoBehaviour {
 	public Color NeutralColor;
 
 	public GameObject gameButtons;		// game menu buttons
-
+	public StandAloneInputModuleClearable input;
 	public Text time;
 
 	float gameTime = 0.0f;								// game play time
@@ -274,6 +274,7 @@ public class Game : MonoBehaviour {
 	// change menu
 	public void SwitchMenu(){
 		gameButtons.SetActive(!gameButtons.activeSelf);		// show game menu
+		if(!gameButtons.activeSelf) input.Clear();
 	}
 }
 
