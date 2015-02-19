@@ -34,7 +34,7 @@ public class Game : MonoBehaviour {
 	public GameObject texInstructions;
 	
 	public GameObject gen;							// generating puzzle gui texture
-	
+	public Button pauseButton;
 	public bool paused { get { return gameButtons.activeSelf; } }
 
 	void Start (){
@@ -95,7 +95,9 @@ public class Game : MonoBehaviour {
 		if(filled == 81){										// if all filled
 			countTime = false;							// stop counting
 			solved = true;										// puzzle is solved
+			time.gameObject.SetActive(false);
 			texInstructions.SetActive(false);
+			pauseButton.gameObject.SetActive(false);
 			texSolved.SetActive(true);				// show gui texture
 			SaveScore();										// save current score
 			SwitchMenu();									// change menu
