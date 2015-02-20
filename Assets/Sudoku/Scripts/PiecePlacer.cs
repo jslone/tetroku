@@ -120,7 +120,7 @@ public class PiecePlacer : MonoBehaviour {
 				isClick = true;
 			}
 			
-			if((Input.GetButtonUp("Submit") || (posInBounds(mousePos) && Input.GetMouseButtonDown(0))) && isClick) {
+			if((Input.GetButtonUp("Submit") || (posInBounds(mousePos) && Input.GetMouseButtonUp(0))) && isClick) {
 				if(Place ()) {
 					// move to the next piece
 					GetNextPiece();
