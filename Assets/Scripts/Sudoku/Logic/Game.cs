@@ -134,7 +134,7 @@ public class Game : MonoBehaviour {
 		
 		string puzzle = "";																				// puzzle
 		
-		puzzle = GameObject.FindWithTag("database").GetComponent<PuzzleDatabase>().SelectPuzzle();				// get puzzle
+		puzzle = GeneratePuzzle.Generate();//GameObject.FindWithTag("database").GetComponent<PuzzleDatabase>().SelectPuzzle();				// get puzzle
 		splicer = new SpliceBoard();
 		splicer.splicePuzzle(puzzle);
 
