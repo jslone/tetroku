@@ -10,6 +10,7 @@ public class Hints : MonoBehaviour {
 	public PiecePlacer piecePlacer;
 	public Animator[] borders;
 	public Game game;
+	public StandAloneInputModuleClearable input;
 
 	// Use this for initialization
 	void Start () {
@@ -28,6 +29,7 @@ public class Hints : MonoBehaviour {
 	}
 
 	public void UseHint(){
+		input.Clear();
 		if (hintButton.enabled) {
 			// Highlight the appropriate 3x3 subboard based on first field
 			Point pos = piecePlacer.Piece.boxes[0].pos;
