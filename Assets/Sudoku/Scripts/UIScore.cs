@@ -23,6 +23,7 @@ public class UIScore : MonoBehaviour {
 				break;
 			case Difficulty.HARD:
 				time = PlayerPrefs.GetFloat("hardscore",float.PositiveInfinity);
+				Debug.Log(time);
 				break;
 		}
 		if(time > 90000) {
