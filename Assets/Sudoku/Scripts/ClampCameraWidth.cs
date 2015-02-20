@@ -19,7 +19,6 @@ public class ClampCameraWidth : MonoBehaviour {
 	}
 	
 	void Resize() {
-		float width = camera.orthographicSize * camera.aspect;
 		float adjSize = minWidth / camera.aspect;
 		
 		camera.orthographicSize = Mathf.Max (maxSize,adjSize);

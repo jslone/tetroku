@@ -21,10 +21,6 @@ public class Game : MonoBehaviour {
 	public Text time;
 
 	float gameTime = 0.0f;								// game play time
-	int hrs = 0;														// hours
-	int min = 0;														// minutes
-	int sec = 0;														// seconds
-	string timeFormat = "";								// play time as string for gui text
 	bool countTime = false;								// count game time
 	public bool solved = false;							// is puzzle solved
 	
