@@ -68,7 +68,7 @@ public class Game : MonoBehaviour {
 		int filled = 0;										// number of filled fields
 		Field[] f = FindObjectsOfType(typeof(Field)) as Field[];			// find all fields
 		foreach(Field fl in f) {	
-			if(fl.value != 0 && fl.valid){			// check if not empty
+			if(!fl.canPlace){			// check if not empty
 				filled++;						// add filled
 			}
 		}
