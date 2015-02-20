@@ -13,19 +13,24 @@ public class UIScore : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		string time = "";
+		float time = float.PositiveInfinity;
 		switch(difficulty) {
 			case Difficulty.EASY:
-				time = PlayerPrefs.GetString("easyscore","99:59:59");
+				time = PlayerPrefs.GetFloat("easyscore",float.PositiveInfinity);
 				break;
 			case Difficulty.MEDIUM:
-				time = PlayerPrefs.GetString("mediumscore","99:59:59");
+				time = PlayerPrefs.GetFloat("mediumscore",float.PositiveInfinity);
 				break;
 			case Difficulty.HARD:
-				time = PlayerPrefs.GetString("hardscore","99:59:59");
+				time = PlayerPrefs.GetFloat("hardscore",float.PositiveInfinity);
 				break;
 		}
-		GetComponent<Text>().text = time;
+		if(time > 90000) {
+			GetComponent<Text>().text = "-";
+		} else {
+			GetComponent<Text>().text = TimeScore.toString(time);
+		}
+		
 	}
 	
 	// Update is called once per frame

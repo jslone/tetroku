@@ -58,28 +58,9 @@ public class Game : MonoBehaviour {
 	
 	// count game time
 	void CountTime(){
-		gameTime += 1*Time.deltaTime;		// count time
-		timeFormat = "";										// clear time string
-		sec = (int)(gameTime % 60.0f);			// get seconds
-		min = (int)(gameTime / 60.0f);				// get minutes
-		hrs = (int)(gameTime / 3600.0f);			// get hours
+		gameTime += Time.deltaTime;		// count time
 		
-		if(hrs < 10){
-			timeFormat = timeFormat + "0"+hrs.ToString()+":";		// create hours string
-		}else{
-			timeFormat = timeFormat +hrs.ToString()+":";
-		}
-		if(min < 10){
-			timeFormat = timeFormat + "0"+min.ToString()+":";		// create minutes string
-		}else{
-			timeFormat = timeFormat +min.ToString()+":";
-		}
-		if(sec < 10){
-			timeFormat = timeFormat + "0"+sec.ToString();				// create seconds string
-		}else{
-			timeFormat = timeFormat +sec.ToString();
-		}
-		time.text = timeFormat;		// set gui text
+		time.text = TimeScore.toString(gameTime);		// set gui text
 	}
 	
 	// check if puzzle is solved
@@ -109,37 +90,37 @@ public class Game : MonoBehaviour {
 	void SaveScore(){
 		string gameLevel = "";							// play level
 		bool canSave = false;							// can score be saved
-		string lb = "";											// last best score
-		string cs = time.text;				// get current score
+		float lb;											// last best score
+		float cs = gameTime;				// get current score
 		
 		gameLevel = PlayerPrefs.GetString("gamelevel","easy");					// get play level
 		
 		switch(gameLevel){
 			case "easy":																										// if easy
-				lb = PlayerPrefs.GetString("easyscore","99:59:59");					// get score
-				canSave = CompareScore(cs,lb);															// compare scores
+				lb = PlayerPrefs.GetFloat("easyscore",float.PositiveInfinity);					// get score
+				canSave = cs < lb;															// compare scores
 				if(canSave){																									// if can save
-					PlayerPrefs.SetString("easyscore",cs);											// save current score
+					PlayerPrefs.SetFloat("easyscore",cs);											// save current score
 				}
 				if(PlayerPrefs.GetInt("levelUnlocked", 0) == 0) {
 					PlayerPrefs.SetInt("levelUnlocked", 1);
 				}
 				break;
 			case "medium":																								// if medium
-				lb = PlayerPrefs.GetString("mediumscore","99:59:59");
-				canSave = CompareScore(cs,lb);
+				lb = PlayerPrefs.GetFloat("mediumscore",float.PositiveInfinity);
+				canSave = cs < lb;
 				if(canSave){
-					PlayerPrefs.SetString("mediumscore",cs);
+					PlayerPrefs.SetFloat("mediumscore",cs);
 				}
 				if(PlayerPrefs.GetInt("levelUnlocked", 0) == 1) {
 					PlayerPrefs.SetInt("levelUnlocked", 2);
 				}
 				break;
 			case "hard":																										// if hard
-				lb = PlayerPrefs.GetString("hardscore","99:59:59");
-				canSave = CompareScore(cs,lb);
+				lb = PlayerPrefs.GetFloat("hardscore",float.PositiveInfinity);
+				canSave = cs < lb;
 				if(canSave){
-					PlayerPrefs.SetString("hardscore",cs);
+					PlayerPrefs.SetFloat("hardscore",cs);
 				}
 				break;
 		}
@@ -147,40 +128,7 @@ public class Game : MonoBehaviour {
 
 	void SendAnalytics() {
 		string gameLevel = PlayerPrefs.GetString("gamelevel","easy");
-		GA.API.Design.NewEvent("Time:" + gameLevel,gameTime);
-	}
-	
-	// compare final score
-	bool CompareScore(string ns, string os){									// new score, old score
-		bool cs = false;																					// can save
-		
-		string nhrss = ns[0].ToString()+ns[1].ToString();					// create new hours 
-		string nmins = ns[3].ToString()+ns[4].ToString();					// create new minutes
-		string nsecs = ns[6].ToString()+ns[7].ToString();					// create new seconds
-		
-		int nhrsi = int.Parse(nhrss);															// convert all to int
-		int nmini = int.Parse(nmins);
-		int nseci = int.Parse(nsecs);
-		
-		string ohrss = os[0].ToString()+os[1].ToString();					// create old hours, minutes and seconds and convert them to int
-		string omins = os[3].ToString()+os[4].ToString();
-		string osecs = os[6].ToString()+os[7].ToString();
-		
-		int ohrsi = int.Parse(ohrss);
-		int omini = int.Parse(omins);
-		int oseci = int.Parse(osecs);
-		
-		if(nhrsi < ohrsi){						// compare hours, if new better then can save
-			cs = true;								
-		}
-		if(nmini < omini){					// compare minutes
-			cs = true;
-		}
-		if(nseci < oseci){						// compare seconds
-			cs = true;
-		}
-		
-		return cs;									// return can save
+		GA.API.Design.NewEvent("Time:" + gameLevel, gameTime);
 	}
 	
 	// load prefab puzzle
