@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class GeneratePuzzle {
-	
+	public static readonly string testPuzzle = "999999999999999999999999999999999999999999999999999999999999999999999999999999999";
 	public static string Generate() {
 		SudokuModel.Sudoku sudoku = new SudokuModel.Sudoku();
 		sudoku.Data = new byte[,]{

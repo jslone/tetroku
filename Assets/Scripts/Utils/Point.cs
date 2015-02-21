@@ -20,8 +20,24 @@ public class Point {
 		return new Point(c*a.x, c*a.y);
 	}
 	
-	public static bool Equal(Point p, Point q) {
-		return p.x == q.x && p.y == q.y;
+	public override bool Equals(System.Object other) {
+		if(other == null) {
+			return false;
+		}
+		
+		Point q = other as Point;
+		if((System.Object)q == null) {
+			return false;
+		}
+		
+		return x == q.x && y == q.y;
+	}
+	
+	public override int GetHashCode() {
+		int hash = 13;
+		hash = (hash * 7) + x.GetHashCode();
+		hash = (hash * 7) + y.GetHashCode();
+		return hash;
 	}
 	
 	public static implicit operator Point(Vector2 v) {
@@ -53,10 +69,18 @@ public class Point {
 	}
 	
 	public static bool operator ==(Point p, Point q) {
-		return Equal(p,q);
+		if(ReferenceEquals(p,q)) {
+			return true;
+		}
+		
+		if((object)p == null || (object)q == null) {
+			return false;
+		}
+		
+		return p.Equals(q);
 	}
 	
 	public static bool operator !=(Point p, Point q) {
-		return !Equal(p,q);
+		return !(p == q);
 	}
 }

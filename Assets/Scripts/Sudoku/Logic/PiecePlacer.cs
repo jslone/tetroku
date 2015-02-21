@@ -197,7 +197,6 @@ public class PiecePlacer : MonoBehaviour {
 		if(game.splicer.pieces.Count > 0) {
 			PieceIdx = Random.Range(0,game.splicer.pieces.Count);
 			Piece = game.splicer.pieces[PieceIdx];
-			Debug.Log(Piece.boxes[0].pos);
 		}
 
 	}

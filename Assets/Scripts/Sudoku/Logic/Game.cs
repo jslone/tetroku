@@ -9,100 +9,97 @@ public class Game : MonoBehaviour {
 
 	public SpliceBoard splicer;
 	
-	public Sprite[] num;						// number textures
+	public Sprite[] num;
 	public Sprite[] numWrong;
 	public Color GoodColor;
 	public Color BadColor;
 	public Color LockColor;
 	public Color NeutralColor;
 
-	public GameObject gameButtons;		// game menu buttons
+	public GameObject gameButtons;
 	public StandAloneInputModuleClearable input;
 	public Text time;
 
-	float gameTime = 0.0f;								// game play time
-	bool countTime = false;								// count game time
-	public bool solved = false;							// is puzzle solved
+	float gameTime = 0.0f;
+	bool countTime = false;
+	public bool solved = false;
 	
-	int[,] code = new int[9,9];						// solved puzzle
+	int[,] code = new int[9,9];
 	
-	public GameObject texSolved;				// solved gui texture
+	public GameObject texSolved;
 	public GameObject texInstructions;
 	
-	public GameObject gen;							// generating puzzle gui texture
 	public Button pauseButton;
 	public bool paused { get { return gameButtons.activeSelf; } }
 
 	void Start (){
-		gen.SetActive(false);								// disable some objects
 		texSolved.SetActive(false);
 		LoadPuzzle();
-		countTime = true;										// start counting time
+		countTime = true;
 	}
 	
 	void Update(){
 		if(countTime){
-			CountTime();																					// count time
+			CountTime();
 		}
 	}
 	
 	void LateUpdate(){
 		if(!solved){
-			CheckSolve();											// check is puzzle solved
+			CheckSolve();
 		}
 	}
 	
-	// count game time
+	// increment timer
 	void CountTime(){
-		gameTime += Time.deltaTime;		// count time
-		
-		time.text = TimeScore.toString(gameTime);		// set gui text
+		gameTime += Time.deltaTime;
+		time.text = TimeScore.toString(gameTime);
 	}
 	
 	// check if puzzle is solved
 	void CheckSolve(){
-		int filled = 0;										// number of filled fields
-		Field[] f = FindObjectsOfType(typeof(Field)) as Field[];			// find all fields
-		foreach(Field fl in f) {	
-			if(!fl.canPlace){			// check if not empty
-				filled++;						// add filled
+		int filled = 0;
+		Field[] f = FindObjectsOfType(typeof(Field)) as Field[];
+		foreach(Field fl in f) {
+			if(!fl.canPlace){
+				filled++;
 			}
 		}
 		
-		if(filled == 81){										// if all filled
-			countTime = false;							// stop counting
-			solved = true;										// puzzle is solved
+		if(filled == 81){
+			countTime = false;
+			solved = true;
 			time.gameObject.SetActive(false);
 			texInstructions.SetActive(false);
 			pauseButton.gameObject.SetActive(false);
-			texSolved.SetActive(true);				// show gui texture
-			SaveScore();										// save current score
-			SwitchMenu();									// change menu
+			texSolved.SetActive(true);
+			SaveScore();
+			SwitchMenu();
 			SendAnalytics();
 		}
 	}
 	
-	// save game score if best
+	// update high score
 	void SaveScore(){
-		string gameLevel = "";							// play level
-		bool canSave = false;							// can score be saved
-		float lb;											// last best score
-		float cs = gameTime;				// get current score
+		string gameLevel = "";
+		bool canSave = false;
+		float lb;
+		float cs = gameTime;
 		
-		gameLevel = PlayerPrefs.GetString("gamelevel","easy");					// get play level
+		gameLevel = PlayerPrefs.GetString("gamelevel","easy");
 		
 		switch(gameLevel){
-			case "easy":																										// if easy
-				lb = PlayerPrefs.GetFloat("easyscore",float.PositiveInfinity);					// get score
-				canSave = cs < lb;															// compare scores
-				if(canSave){																									// if can save
-					PlayerPrefs.SetFloat("easyscore",cs);											// save current score
+			case "easy":
+				lb = PlayerPrefs.GetFloat("easyscore",float.PositiveInfinity);
+				canSave = cs < lb;
+				if(canSave){
+					PlayerPrefs.SetFloat("easyscore",cs);
 				}
 				if(PlayerPrefs.GetInt("levelUnlocked", 0) == 0) {
 					PlayerPrefs.SetInt("levelUnlocked", 1);
 				}
 				break;
-			case "medium":																								// if medium
+			case "medium":
 				lb = PlayerPrefs.GetFloat("mediumscore",float.PositiveInfinity);
 				canSave = cs < lb;
 				if(canSave){
@@ -112,7 +109,7 @@ public class Game : MonoBehaviour {
 					PlayerPrefs.SetInt("levelUnlocked", 2);
 				}
 				break;
-			case "hard":																										// if hard
+			case "hard":
 				lb = PlayerPrefs.GetFloat("hardscore",float.PositiveInfinity);
 				canSave = cs < lb;
 				if(canSave){
@@ -127,21 +124,17 @@ public class Game : MonoBehaviour {
 		GA.API.Design.NewEvent("Time:" + gameLevel, gameTime);
 	}
 	
-	// load prefab puzzle
+	// Generate a puzzle and splice it into tetris pieces
 	void LoadPuzzle(){
-		int i = 0;								// index number
-		int no = 0;							// field number
-		
-		string puzzle = "";																				// puzzle
-		
-		puzzle = GeneratePuzzle.Generate();//GameObject.FindWithTag("database").GetComponent<PuzzleDatabase>().SelectPuzzle();				// get puzzle
+	
+		string puzzle = GeneratePuzzle.Generate();
 		splicer = new SpliceBoard();
 		splicer.splicePuzzle(puzzle);
-
+		
+		int i = 0;
 		for(int x = 0; x < 9; x++){
 			for(int y = 0; y < 9; y++){
-				no = puzzle[i].ParseInt32();
-				code[x,y] = no;							// save field value
+				code[x,y] = puzzle[i].ParseInt32();
 				i++;
 			}
 		}
@@ -149,29 +142,27 @@ public class Game : MonoBehaviour {
 		foreach(Vector2 extra in splicer.extras) {
 			int x = Mathf.RoundToInt(extra.x);
 			int y = Mathf.RoundToInt(extra.y);
-			no = code[x,y];
-
-
+			
 			Field f = board.fields[x,y];
 			f.canPlace = false;
-			f.SetValue(no);
+			f.SetValue(code[x,y]);
 		}
 
-		int noPieces;
+		int numPieces;
 		string gameLevel = PlayerPrefs.GetString("gamelevel","easy");
 		switch(gameLevel) {
 			case "easy":
-				noPieces = Random.Range(12,16);
+				numPieces = Random.Range(12,16);
 				break;
 			case "medium":
-				noPieces = Random.Range(8,12);
+				numPieces = Random.Range(8,12);
 				break;
 			default:
-				noPieces = Random.Range(4,8);
+				numPieces = Random.Range(4,8);
 				break;
 		}
 
-		for(int j = 0; j < noPieces; j++) {
+		for(int j = 0; j < numPieces; j++) {
 			int index = Random.Range(0,splicer.pieces.Count);
 			TetrisPiece t = splicer.pieces[index];
 			foreach(Box b in t.boxes) {
@@ -186,36 +177,12 @@ public class Game : MonoBehaviour {
 		}
 	}
 	
+	// check if the solution board has value at position row,col
 	public bool CheckBoard(int row, int col, int value) {
 		return code[row,col] == value;
-	} 
-	
-	// check column and row
-	public bool CheckCR(int x, int y, int val){				// first number, second number, value
-		bool cp = true;												// can place
-		for(int i = 0; i < 9; i++) {
-			cp &= i==y || board.fields[x,i].value != val;
-			cp &= i==x || board.fields[i,y].value != val;
-		}
-		return cp;															// return can place
 	}
 	
-	// check for same numbers in box
-	public bool CheckBox(int x, int y, int val){				//
-		bool cp = true;
-		int sx = (x/3)*3;
-		int sy = (y/3)*3;
-		for(int i = 0; i < 3; i++) {
-			for(int j = 0; j < 3; j++) {
-				int ii = sx+i;
-				int jj = sy+j;
-				cp &= (x==ii && y==jj) || board.fields[ii,jj].value != val;
-			}
-		}
-		return cp;
-	}
-	
-	// change menu
+	// toggle menu
 	public void SwitchMenu(){
 		gameButtons.SetActive(!gameButtons.activeSelf);		// show game menu
 		if(!gameButtons.activeSelf) input.Clear();

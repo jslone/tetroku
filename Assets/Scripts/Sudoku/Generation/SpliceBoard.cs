@@ -156,7 +156,6 @@ public class SpliceBoard {
 					return true;
 				}
 			}
-			break;
 		}
 		case 1:
 		{
@@ -174,7 +173,6 @@ public class SpliceBoard {
 					return true;
 				}
 			}
-			break;
 		}
 		case 2:
 		{
@@ -192,7 +190,6 @@ public class SpliceBoard {
 					return true;
 				}
 			}
-			break;
 		}
 		case 3:
 		{
@@ -210,7 +207,6 @@ public class SpliceBoard {
 					return true;
 				}
 			}
-			break;
 		}
 		case 4:
 		{
@@ -228,7 +224,6 @@ public class SpliceBoard {
 					return true;
 				}
 			}
-			break;
 		}
 		case 5:
 		{
@@ -246,7 +241,6 @@ public class SpliceBoard {
 					return true;
 				}
 			}
-			break;
 		}
 		default:
 			return false;

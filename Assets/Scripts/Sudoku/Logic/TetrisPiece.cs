@@ -50,24 +50,50 @@ public class TetrisPiece {
 		puzzle[third.x,third.y].isSpliced = true;
 	}
 	
-	public static bool Equal(TetrisPiece p, TetrisPiece q) {
-		if(Object.Equals(p,null) || Object.Equals(q,null) || Object.Equals(p,q)) {
-			return Object.Equals(p,q);
+	public override bool Equals(System.Object other) {
+		if(other == null) {
+			return false;
 		}
 		
-		if(p.type != q.type) return false;
-		for(int i = 0; i < p.boxes.Count; i++) {
-			if(p.boxes[i].value != q.boxes[i].value) return false;
+		TetrisPiece p = other as TetrisPiece;
+		if((System.Object)p == null) {
+			return false;
+		}
+		
+		if(type != p.type) {
+			return false;
+		}
+		
+		for(int i = 0; i < boxes.Count; i++) {
+			if(boxes[i].value != p.boxes[i].value) return false;
 		}
 		return true;
 	}
 	
+	public override int GetHashCode() {
+		int hash = 13;
+		hash = (hash * 7) + type;
+		for(int i = 0; i < boxes.Count; i++) {
+			hash = (hash * 7) + boxes[i].pos.GetHashCode();
+			hash = (hash * 7) + boxes[i].value.GetHashCode();
+		}
+		return hash;
+	}
+	
 	public static bool operator ==(TetrisPiece p, TetrisPiece q) {
-		return Equal(p,q);
+		if(ReferenceEquals(p,q)) {
+			return true;
+		}
+		
+		if((object)p == null || (object)q == null) {
+			return false;
+		}
+		
+		return p.Equals(q);
 	}
 	
 	public static bool operator !=(TetrisPiece p, TetrisPiece q) {
-		return !Equal(p,q);
+		return !(p == q);
 	}
 	
 	public bool Fits(Point p) {

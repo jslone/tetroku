@@ -3,12 +3,11 @@ using System.Collections;
 
 public class Field : MonoBehaviour {
 	public int col;
-	public int row;									// row number
+	public int row;
 	public int value = 0;
 	public bool valid = true;
-	public bool canPlace = false;			// can number be placed on this field
-	public Game game;										// game script reference
-	Touch[] touch;
+	public bool canPlace = false;
+	public Game game;
 	SpriteRenderer sprite;
 	
 
