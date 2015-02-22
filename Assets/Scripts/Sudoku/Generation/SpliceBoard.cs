@@ -194,13 +194,13 @@ public class SpliceBoard {
 		case 3:
 		{
 			//Two top, one bottom left
-			if(row > BOARD_DIMENSION - 2 || col > BOARD_DIMENSION - 2) {
+			if(row > BOARD_DIMENSION - 2 || col < 1) {
 				//The piece is too close to the edge of the board.
 				return false;
 			} else {
 				firstOccupied = puzzleArray[row,col].isSpliced;
-				secondOccupied = puzzleArray[row,col+1].isSpliced;
-				thirdOccupied = puzzleArray[row+1, col].isSpliced;
+				secondOccupied = puzzleArray[row,col-1].isSpliced;
+				thirdOccupied = puzzleArray[row+1, col-1].isSpliced;
 				if(firstOccupied || secondOccupied || thirdOccupied) {
 					return false;
 				} else {

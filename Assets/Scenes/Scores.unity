@@ -986,7 +986,7 @@ GameObject:
   - 114: {fileID: 903957630}
   - 114: {fileID: 903957629}
   m_Layer: 0
-  m_Name: Sudoku
+  m_Name: scores
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1375,7 +1375,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Tridoku
+  m_Text: Sudokis
 --- !u!222 &946567682
 CanvasRenderer:
   m_ObjectHideFlags: 0

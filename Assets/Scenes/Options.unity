@@ -157,7 +157,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Tridoku
+  m_Text: Sudokis
 --- !u!1 &269116060
 GameObject:
   m_ObjectHideFlags: 0

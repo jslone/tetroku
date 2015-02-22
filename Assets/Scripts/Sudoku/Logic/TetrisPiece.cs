@@ -13,15 +13,14 @@ public struct Box {
 
 public class TetrisPiece {
 	public List<Box> boxes;
-	
+	public Point origin;
 	private int type;
 	
-	public Point origin;
 	private static Point[,] offsets = new Point[,] {
 		{new Point(0,1), new Point (0,2)},
 		{new Point(1,0), new Point (2,0)},
 		{new Point(1,0), new Point (1,1)},
-		{new Point(0,1), new Point (1,0)},
+		{new Point(0,-1), new Point (1,-1)},
 		{new Point(0,1), new Point (1,1)},
 		{new Point(1,0), new Point (1,-1)}
 	};
@@ -40,6 +39,8 @@ public class TetrisPiece {
 		Point first = new Point(row,col);
 		Point second = first + offsets[type,0];
 		Point third = first + offsets[type,1];
+		
+		this.origin = second;
 		
 		boxes.Add(new Box(first,puzzle[first.x,first.y].value));
 		boxes.Add(new Box(second,puzzle[second.x,second.y].value));
@@ -97,7 +98,7 @@ public class TetrisPiece {
 	}
 	
 	public bool Fits(Point p) {
-		return p == boxes[0].pos;
+		return p == origin;
 	}
 	
 	public int anchorPiece(Point pos, List<TetrisPiece> pieces) {

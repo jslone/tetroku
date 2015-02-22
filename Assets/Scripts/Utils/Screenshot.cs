@@ -24,6 +24,6 @@ public class Screenshot : MonoBehaviour {
 	
 	public void Take() {
 		Debug.Log("called");
-		Application.CaptureScreenshot("Screenshots/screenshopt" + count++ + ".png");
+		Application.CaptureScreenshot("Screenshots/screenshot" + count++ + ".png");
 	}
 }

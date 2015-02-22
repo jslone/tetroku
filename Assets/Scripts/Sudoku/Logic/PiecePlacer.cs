@@ -29,7 +29,7 @@ public class PiecePlacer : MonoBehaviour {
 		}
 		set {
 			_piece = value;
-			Vector2 origin = _piece.boxes[0].pos;
+			Vector2 origin = _piece.origin;
 			Vector2 lbl = Vector2.zero;
 			Vector2 lur = Vector2.zero;
 			// set each child to display correctly

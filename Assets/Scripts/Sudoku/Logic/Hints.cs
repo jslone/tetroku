@@ -32,7 +32,7 @@ public class Hints : MonoBehaviour {
 		input.Clear();
 		if (hintButton.enabled) {
 			// Highlight the appropriate 3x3 subboard based on first field
-			Point pos = piecePlacer.Piece.boxes[0].pos;
+			Point pos = piecePlacer.Piece.origin;
 
 			// Get upper-left position of subboard
 			// leave out the / 3 if you want position in {0, 1, 2}
